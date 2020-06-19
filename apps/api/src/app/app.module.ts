@@ -15,11 +15,11 @@ import { DatabaseConfig } from './database.config';
       isGlobal: true,
       load: [config],
     }),
-    GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
-      definitions: { path: join(process.cwd(), 'src/graphql.ts') },
-      context: ({ req }) => ({ headers: req.headers }),
-    }),
+    // GraphQLModule.forRoot({
+    //   typePaths: ['./**/*.graphql'],
+    //   definitions: { path: join(process.cwd(), 'src/graphql.ts') },
+    //   context: ({ req }) => ({ headers: req.headers }),
+    // }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useClass: DatabaseConfig,
