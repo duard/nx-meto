@@ -18,7 +18,8 @@
     "paths": {
       "@env": ["enviroments/*"],
       "@env/*": ["environments/*"],
-      "@meto/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@meto/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@meto/api-cruds": ["libs/api-cruds/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
