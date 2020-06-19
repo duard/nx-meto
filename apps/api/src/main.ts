@@ -10,23 +10,24 @@ import { AppModule } from './app/app.module';
 
 
 async function bootstrap() {
-  console.log('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
-  console.log('USERNAME =>', process.env.DB_METO_USERNAME);
-  console.log('PASSWORD =>', process.env.DB_METO_PASSWORD);
-  console.log('DATABASE =>', process.env.DB_METO_DATABASE);
+
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   const configService = app.get(ConfigService);
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 3333;
+  const port = configService.get('API_METO_PORT');
 
 
 
-  await app.listen(configService.get('PORT'), () => {
-    Logger.debug('teste');
-    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
+  await app.listen(port, () => {
+    Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
+    Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
+    Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
+    Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
+    Logger.debug('DATABASE =>', process.env.DB_METO_DATABASE);
+    Logger.debug('Listening at http://localhost:' + port + '/' + globalPrefix);
   });
 }
 

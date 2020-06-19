@@ -9,7 +9,7 @@ export const config = () => ({
     password: process.env.DB_METO_PASSWORD,
     database: process.env.DB_METO_DATABASE,
     synchronize: true,
-    logging: false,
+    logging: true,
     entities: ['dist/**/*.entity.js'],
   },
 });
