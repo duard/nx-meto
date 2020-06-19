@@ -9,8 +9,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseConfig } from './database.config';
 
+
+import { CargosModule } from "@meto/api-cruds";
+
 @Module({
   imports: [
+
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
@@ -24,6 +28,8 @@ import { DatabaseConfig } from './database.config';
       imports: [ConfigModule],
       useClass: DatabaseConfig,
     }),
+
+    CargosModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,3 +1,5 @@
+import { CargoEntity } from '@meto/api-interfaces';
+
 export const config = () => ({
   port: Number(process.env.PORT),
   jwtSecret: process.env.JWT_SECRET,
@@ -10,12 +12,6 @@ export const config = () => ({
     database: process.env.DB_METO_DATABASE,
     synchronize: true,
     logging: true,
-    entities: ['dist/**/*.entity.js'],
+    entities: ['dist/**/*.entity.js', CargoEntity],
   },
 });
-
-
-// export DB_METO_HOSTNAME=localhost
-// export DB_METO_USERNAME=dev-user
-// export DB_METO_PASSWORD=teste123
-// export DB_METO_DATABASE=dev-migra

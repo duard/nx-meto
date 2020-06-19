@@ -1,1 +1,1 @@
-export * from './lib/api-cruds.module';
+export * from './lib/cargos/cargos.module';
