@@ -40,6 +40,9 @@
     },
     "shared-things": {
       "tags": []
+    },
+    "api-providers": {
+      "tags": []
     }
   }
 }

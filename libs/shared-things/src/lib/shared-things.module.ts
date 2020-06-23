@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-
+import { ConfigService } from './services/config.service';
+const providers = [ConfigService];
 @Module({
-  controllers: [],
-  providers: [],
-  exports: [],
+  providers,
+  imports: [],
+
+  exports: [...providers],
 })
 export class SharedThingsModule {}

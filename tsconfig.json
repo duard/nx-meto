@@ -22,7 +22,8 @@
       "@meto/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@meto/api-cruds": ["libs/api-cruds/src/index.ts"],
       "@meto/api-database": ["libs/api-database/src/index.ts"],
-      "@meto/shared-things": ["libs/shared-things/src/index.ts"]
+      "@meto/shared-things": ["libs/shared-things/src/index.ts"],
+      "@meto/api-providers": ["libs/api-providers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

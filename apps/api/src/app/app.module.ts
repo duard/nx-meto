@@ -1,18 +1,17 @@
+import { CargosModule, EscolaridadesModule } from '@meto/api-cruds';
+import { ApiDatabaseModule } from '@meto/api-database';
+import { SharedThingsModule } from '@meto/shared-things';
+import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { Module } from '@nestjs/common';
-import { config } from './config';
 import { ConfigModule } from '@nestjs/config';
-import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
-import { LoggerModule } from 'nestjs-pino';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DatabaseConfig } from './database.config';
+import { config } from './config';
 
-import { CargosModule, EscolaridadesModule } from '@meto/api-cruds';
-import { ApiDatabaseModule } from '@meto/api-database';
-import { HelmetMiddleware } from '@nest-middlewares/helmet'; // (look around in the source code for the exact class name)
+
+import { ConfigService } from "@meto/shared-things";
 
 @Module({
   imports: [
@@ -21,20 +20,25 @@ import { HelmetMiddleware } from '@nest-middlewares/helmet'; // (look around in 
       load: [config],
     }),
     HelmetMiddleware,
+    ApiDatabaseModule,
+    CargosModule,
 
+    EscolaridadesModule,
     // GraphQLModule.forRoot({
     //   typePaths: ['./**/*.graphql'],
     //   definitions: { path: join(process.cwd(), 'src/graphql.ts') },
     //   context: ({ req }) => ({ headers: req.headers }),
     // }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useClass: DatabaseConfig,
-    }),
-    ApiDatabaseModule,
-    CargosModule,
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   useClass: DatabaseConfig,
+    // }),
 
-    EscolaridadesModule,
+    TypeOrmModule.forRootAsync({
+      imports: [SharedThingsModule],
+      useFactory: (configService: ConfigService) => configService.typeOrmConfig,
+      inject: [ConfigService],
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
