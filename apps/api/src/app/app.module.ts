@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { LoggerModule } from 'nestjs-pino';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -11,6 +12,7 @@ import { DatabaseConfig } from './database.config';
 
 import { CargosModule, EscolaridadesModule } from '@meto/api-cruds';
 import { ApiDatabaseModule } from '@meto/api-database';
+import { HelmetMiddleware } from '@nest-middlewares/helmet'; // (look around in the source code for the exact class name)
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { ApiDatabaseModule } from '@meto/api-database';
       isGlobal: true,
       load: [config],
     }),
+    HelmetMiddleware,
+
     // GraphQLModule.forRoot({
     //   typePaths: ['./**/*.graphql'],
     //   definitions: { path: join(process.cwd(), 'src/graphql.ts') },
@@ -29,9 +33,14 @@ import { ApiDatabaseModule } from '@meto/api-database';
     }),
     ApiDatabaseModule,
     CargosModule,
+
     EscolaridadesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('=> ', __dirname);
+  }
+}

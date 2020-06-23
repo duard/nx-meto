@@ -10,8 +10,9 @@ export const config = () => ({
     username: process.env.DB_METO_USERNAME,
     password: process.env.DB_METO_PASSWORD,
     database: process.env.DB_METO_DATABASE,
-    synchronize: true,
+    synchronize: false,
     logging: true,
-    entities: ['dist/**/*.entity.js', CargoEntity, EscolaridadeEntity],
+    autoLoadEntities: true
+
   },
 });

@@ -1,0 +1,36 @@
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"NestFactory","msg":"Starting Nest application...","time":"2020-06-23T18:22:34.410Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"HelmetMiddleware dependencies initialized","time":"2020-06-23T18:22:34.437Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"TypeOrmModule dependencies initialized","time":"2020-06-23T18:22:34.438Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"ConfigHostModule dependencies initialized","time":"2020-06-23T18:22:34.438Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"AppModule dependencies initialized","time":"2020-06-23T18:22:34.438Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"ConfigModule dependencies initialized","time":"2020-06-23T18:22:34.439Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"ConfigModule dependencies initialized","time":"2020-06-23T18:22:34.439Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"TypeOrmCoreModule dependencies initialized","time":"2020-06-23T18:22:34.532Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"TypeOrmModule dependencies initialized","time":"2020-06-23T18:22:34.533Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"TypeOrmModule dependencies initialized","time":"2020-06-23T18:22:34.534Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"ApiDatabaseModule dependencies initialized","time":"2020-06-23T18:22:34.535Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"CargosModule dependencies initialized","time":"2020-06-23T18:22:34.535Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"InstanceLoader","msg":"EscolaridadesModule dependencies initialized","time":"2020-06-23T18:22:34.536Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":40,"context":"DocumentBuilder","msg":"The \"setBasePath\" method has been deprecated. Now, a global prefix is populated automatically. If you want to ignore it, take a look here: https://docs.nestjs.com/recipes/swagger#global-prefix. Alternatively, you can use \"addServer\" method to set up multiple different paths.","time":"2020-06-23T18:22:34.539Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RoutesResolver","msg":"AppController {/api}:","time":"2020-06-23T18:22:34.594Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/hello, GET} route","time":"2020-06-23T18:22:34.597Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RoutesResolver","msg":"ApiDatabaseController {/api/api-database}:","time":"2020-06-23T18:22:34.597Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/api-database/raw-sql, GET} route","time":"2020-06-23T18:22:34.598Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/api-database/table-fields, GET} route","time":"2020-06-23T18:22:34.598Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RoutesResolver","msg":"CargosController {/api/cargos}:","time":"2020-06-23T18:22:34.598Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos/:id, GET} route","time":"2020-06-23T18:22:34.600Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos, GET} route","time":"2020-06-23T18:22:34.600Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos, POST} route","time":"2020-06-23T18:22:34.601Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos/bulk, POST} route","time":"2020-06-23T18:22:34.601Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos/:id, PATCH} route","time":"2020-06-23T18:22:34.602Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos/:id, PUT} route","time":"2020-06-23T18:22:34.602Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/cargos/:id, DELETE} route","time":"2020-06-23T18:22:34.603Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RoutesResolver","msg":"EscolaridadesController {/api/escolaridades}:","time":"2020-06-23T18:22:34.603Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades/:id, GET} route","time":"2020-06-23T18:22:34.603Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades, GET} route","time":"2020-06-23T18:22:34.604Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades, POST} route","time":"2020-06-23T18:22:34.604Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades/bulk, POST} route","time":"2020-06-23T18:22:34.604Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades/:id, PATCH} route","time":"2020-06-23T18:22:34.605Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades/:id, PUT} route","time":"2020-06-23T18:22:34.605Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"RouterExplorer","msg":"Mapped {/api/escolaridades/:id, DELETE} route","time":"2020-06-23T18:22:34.605Z","v":0}
+{"name":"SIMPLES","hostname":"PC-Carlos","pid":9373,"level":30,"context":"NestApplication","msg":"Nest application successfully started","time":"2020-06-23T18:22:34.608Z","v":0}

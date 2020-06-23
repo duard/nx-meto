@@ -37,6 +37,9 @@
     },
     "api-database": {
       "tags": []
+    },
+    "shared-things": {
+      "tags": []
     }
   }
 }

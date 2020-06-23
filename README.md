@@ -2,6 +2,8 @@
 
 Atualizar o projeto inteiro, sempre mantenha ele atualizado, não seja um goiaba.
 
+https://awesomeopensource.com/project/juliandavidmr/awesome-nestjs
+
 ```shell
  npx ng update --all --force
 ```
