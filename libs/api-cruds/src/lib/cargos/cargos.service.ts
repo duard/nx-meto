@@ -7,7 +7,7 @@ import { CargoEntity  } from '@meto/api-interfaces';
 
 @Injectable()
 export class CargosService extends TypeOrmCrudService<CargoEntity> {
-  constructor(@InjectRepository(CargoEntity) cargosRepository: Repository<CargoEntity>) {
-    super(cargosRepository);
+  constructor(@InjectRepository(CargoEntity) thisRepository: Repository<CargoEntity>) {
+    super(thisRepository);
   }
 }

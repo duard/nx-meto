@@ -1,4 +1,4 @@
-import { CargoEntity } from '@meto/api-interfaces';
+import { CargoEntity, EscolaridadeEntity } from '@meto/api-interfaces';
 
 export const config = () => ({
   port: Number(process.env.PORT),
@@ -12,6 +12,6 @@ export const config = () => ({
     database: process.env.DB_METO_DATABASE,
     synchronize: true,
     logging: true,
-    entities: ['dist/**/*.entity.js', CargoEntity],
+    entities: ['dist/**/*.entity.js', CargoEntity, EscolaridadeEntity],
   },
 });

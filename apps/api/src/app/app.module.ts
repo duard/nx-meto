@@ -1,3 +1,4 @@
+
 import { Module } from '@nestjs/common';
 import { config } from './config';
 import { ConfigModule } from '@nestjs/config';
@@ -10,14 +11,14 @@ import { AppService } from './app.service';
 import { DatabaseConfig } from './database.config';
 
 
-import { CargosModule } from "@meto/api-cruds";
+import { CargosModule, EscolaridadesModule } from "@meto/api-cruds";
 
 @Module({
   imports: [
-
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
+
     }),
     // GraphQLModule.forRoot({
     //   typePaths: ['./**/*.graphql'],
@@ -29,7 +30,7 @@ import { CargosModule } from "@meto/api-cruds";
       useClass: DatabaseConfig,
     }),
 
-    CargosModule
+    CargosModule, EscolaridadesModule
   ],
   controllers: [AppController],
   providers: [AppService],
