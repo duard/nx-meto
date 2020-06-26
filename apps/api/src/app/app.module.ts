@@ -1,4 +1,4 @@
-import { CargosModule, EscolaridadesModule } from '@meto/api-cruds';
+import { CargosModule, EscolaridadesModule, LocaisModule } from '@meto/api-cruds';
 import { ApiDatabaseModule } from '@meto/api-database';
 import { SharedThingsModule } from '@meto/shared-things';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
@@ -10,8 +10,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { config } from './config';
 
-
-import { ConfigService } from "@meto/shared-things";
+import { ConfigService } from '@meto/shared-things';
 
 @Module({
   imports: [
@@ -22,7 +21,7 @@ import { ConfigService } from "@meto/shared-things";
     HelmetMiddleware,
     ApiDatabaseModule,
     CargosModule,
-
+    LocaisModule,
     EscolaridadesModule,
     // GraphQLModule.forRoot({
     //   typePaths: ['./**/*.graphql'],

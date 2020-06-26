@@ -1,6 +1,9 @@
 
 export * from './lib/interfaces/api-interfaces';
 export * from './lib/entities/cargos.entity';
+
+export * from './lib/entities/locais.entity';
+
 export * from './lib/entities/escolaridades.entity';
 
 // export * from './lib/cargos/cargos.entity';
