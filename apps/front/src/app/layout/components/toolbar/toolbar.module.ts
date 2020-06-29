@@ -7,8 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FuseSearchBarModule, FuseShortcutsModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { ToolbarComponent } from './toolbar.component';
 
-import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
 
 @NgModule({
     declarations: [
