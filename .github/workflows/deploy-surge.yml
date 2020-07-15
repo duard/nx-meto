@@ -1,32 +1,26 @@
-name: Deploy Metodista
+name: BUILD PRODUCAO METODISTA APP
 
 on:
   push:
     branches: [master]
 
 jobs:
-  build:
+  build_deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 12.x
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
 
       - name: Install dependencies
         run: npm install
 
-      - name: Lint
-        run: npm run lint
+      - name: Build application to production
+        run: npm run build
 
-      - name: Build
-        run: npm run build -- --prod
-
-      - name: Install Surge
-        run: npm install -g surge
-
-      - name: Deploy to Surge
-        run: surge ./build http
+      - name: Envia para o SURGE
+      - run: npm install -g surge
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_APP }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
