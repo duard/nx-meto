@@ -3,3 +3,65 @@
 
 // Import app.theme.scss
 @import "app/app.theme";
+
+.mat-input-element:disabled, .mat-select-disabled .mat-select-value {
+  color: rgba(30, 30, 30, 0.9);
+}
+
+.main-container {
+  background-color: rgb(220, 220, 220);
+}
+
+/* primeiro claro */
+tr.mat-row:hover {
+  background-color: rgb(228, 228, 228);
+}
+.mat-row:hover {
+  background-color: red;
+}
+.mat-row:hover {
+  cursor: pointer;
+}
+
+[mat-row].remove-background {
+  background: none ;
+}
+
+/* input color class */
+::ng-deep input.mat-input-element {
+  color: #484a4c;
+}
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #50d0fb !important;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+  background-color: #50d0fb !important;
+}
+
+.mat-select-disabled .mat-select-value {
+  color: rgb(71, 71, 71);
+}
+
+.mat-checkbox-disabled .mat-checkbox-label, .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: rgb(71, 71, 71);
+}
+
+.mat-checkbox-disabled .mat-checkbox-label {
+  color: rgb(60, 60, 60);
+}
+
+tr.mat-row:hover {
+  background-color: rgb(185, 185, 185);
+}
+tr.mat-row:hover {
+  background-color: rgb(228, 228, 228);
+}
+.footer-row {
+  background-color: rgb(185, 185, 185);
+  border: solid 2px red !important;
+  bottom: -098px;;
+}
