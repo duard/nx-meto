@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private _translateService: TranslateService,
     private _platform: Platform
   ) {
-    console.log('INICIO');
+    console.log('INICIO da applicação');
     // Get default navigation
     this.navigation = navigation;
 
