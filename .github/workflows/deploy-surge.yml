@@ -1,4 +1,4 @@
-name: BUILD PRODUCAO METODISTA APP
+name: BUILD PRODUCAO METODISTA
 
 on:
   push:
@@ -23,4 +23,4 @@ jobs:
 
       - name: Envia para o SURGE
       - run: npm install -g surge
-      - run: surge ./dist/apps/front ${{ secrets.SURGE_DOMAIN_METODISTA_APP }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_APP }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
