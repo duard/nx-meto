@@ -11,6 +11,8 @@ jobs:
       - name: Install surge and fire deployment
         uses: actions/setup-node@v1
         with:
-          node-version: 8
+          node-version: 12
+      - run: npm install
       - run: npm install -g surge
-      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+      - run: ng build --progress false --prod --base-href metodista-app.surge.sh
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_APP }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
