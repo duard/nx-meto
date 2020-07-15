@@ -5,8 +5,8 @@ import { environment } from '@env/environment';
 import { AppModule } from './app/app.module';
 import { hmrBootstrap } from './hmr';
 
-
 if (environment.production) {
+  console.log('PRODUCTION', environment.production);
   enableProdMode();
 }
 
