@@ -22,6 +22,7 @@ jobs:
         run: npm run build
 
       - name: Instala o SURGE
-      - run: npm install -g surge
+        run: npm install -g surge
       - name: Copia SURGE
-      - run: surge 'dist/apps/front' ${{ secrets.SURGE_DOMAIN_METODISTA_APP }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
+        working-directory: dist/apps/front
+        run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_APP }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
