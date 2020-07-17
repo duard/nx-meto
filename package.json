@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
-    "postinstall": "node dist/apps/api/main.js",
+    "postinstall": "node dist/main.js",
     "nx": "nx",
     "start": "npm run start api",
     "build-app": "npm run build front",
