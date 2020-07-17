@@ -10,7 +10,6 @@
     "build-app": "npm run build front",
     "build-api": "npm run ng build api",
     "build": "npm run ng build api",
-    "heroku-postbuild": "npm run start:dist" ,
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
@@ -28,7 +27,10 @@
     "update": "ng update @nrwl/workspace",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "heroku-postbuild": "npm run start:dist" ,
+    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-cleanup": "pwd; ls -lsh;"
   },
   "private": true,
   "dependencies": {
