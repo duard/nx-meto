@@ -54,10 +54,10 @@ async function bootstrap() {
   SwaggerModule.setup('/docs', app, document);
 
   await app.listen(port, () => {
-    // Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
-    // Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
-    // Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
-    // Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
+    Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
+    Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
+    Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
+    Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
     Logger.debug(': DATABASE', process.env.DB_METO_DATABASE);
     Logger.debug('Listening at http://localhost:' + port + '/' + globalPrefix);
   });

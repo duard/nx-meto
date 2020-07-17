@@ -1,16 +1,14 @@
 import { CargosModule, EscolaridadesModule, LocaisModule } from '@meto/api-cruds';
 import { ApiDatabaseModule } from '@meto/api-database';
-import { SharedThingsModule } from '@meto/shared-things';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { config } from './config';
-
-import { ConfigService } from '@meto/shared-things';
+import { DatabaseConfig } from './database.config';
 
 @Module({
   imports: [
@@ -28,16 +26,16 @@ import { ConfigService } from '@meto/shared-things';
     //   definitions: { path: join(process.cwd(), 'src/graphql.ts') },
     //   context: ({ req }) => ({ headers: req.headers }),
     // }),
-    // TypeOrmModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   useClass: DatabaseConfig,
-    // }),
-
     TypeOrmModule.forRootAsync({
-      imports: [SharedThingsModule],
-      useFactory: (configService: ConfigService) => configService.typeOrmConfig,
-      inject: [ConfigService],
+      imports: [ConfigModule],
+      useClass: DatabaseConfig,
     }),
+
+    // TypeOrmModule.forRootAsync({
+    //   imports: [SharedThingsModule],
+    //   useFactory: (configService: ConfigService) => configService.typeOrmConfig,
+    //   inject: [ConfigService],
+    // }),
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -45,5 +43,10 @@ import { ConfigService } from '@meto/shared-things';
 export class AppModule {
   constructor() {
     console.log('=> ', __dirname);
+        Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
+        Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
+        Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
+        Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
+        Logger.debug(': DATABASE', process.env.DB_METO_DATABASE);
   }
 }
