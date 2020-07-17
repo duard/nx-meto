@@ -6,7 +6,7 @@
     "ng": "nx",
 
     "nx": "nx",
-    "start": " node dist/apps/api/main.js",
+    "start": " node apps/api/main.js",
     "build-app": "npm run build front",
     "build-api": "npm run ng build api",
     "build": "npm run ng build api",
@@ -28,7 +28,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "heroku-postbuild": "ls apps -lsha" ,
+    "heroku-postbuild": "ls apps -lsha;  node apps/api/main.js" ,
     "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
     "heroku-cleanup": "pwd; ls -lsh; ls apps -lsh"
   },
