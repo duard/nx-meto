@@ -3,6 +3,7 @@ name: BUILD SURGE METODISTA
 on:
   push:
     branches: [master]
+
 env:
   API_METO_PORT: 3333
   DB_METO_HOSTNAME: oficinacincodbdev.czevptjeohvo.us-east-2.rds.amazonaws.com
@@ -32,18 +33,19 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
-      - name: Build API
-        run: npm run build api
-      - name: Build APP
-        run: npm run build front
-
-
       - name: Instala o SURGE
         run: npm install -g surge
+
+      - name: Build API
+        run: npm run build api
 
       - name: Copia API
         working-directory: dist/apps/api
         run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_API }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
+        run: npm run start:prod
+
+      - name: Build APP
+        run: npm run build front
 
       - name: Copia APP
         working-directory: dist/apps/front
