@@ -41,7 +41,8 @@ async function bootstrap() {
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
-const port = process.env.PORT || 3000;
+
+  const port = process.env.PORT || 3000;
 
   const options = new DocumentBuilder()
     .setTitle('Simples API Carlos')
@@ -55,7 +56,7 @@ const port = process.env.PORT || 3000;
 
   await app.listen(port, () => {
     Logger.debug('AMBIENTE =>', process.env.NODE_ENV);
-
+    Logger.debug('PORT =>', process.env.PORT);
     Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
     Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
     Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);

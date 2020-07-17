@@ -54,8 +54,7 @@ export class AppModule {
 
     console.log('=> ', __dirname);
     Logger.debug('ENVIRONMENT =>', process.env.NODE_ENV);
-    Logger.debug('API_METO_PORT =>', process.env.PORT);
-
+    Logger.debug('PORT =>', process.env.PORT);
     Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
     Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
     Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
