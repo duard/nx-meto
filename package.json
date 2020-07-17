@@ -30,7 +30,7 @@
     "help": "nx help",
     "heroku-postbuild": "ls apps -lsha;  node apps/api/main.js" ,
     "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
-    "heroku-cleanup": "pwd; ls -lsh; ls apps -lsh"
+    "heroku-cleanup": "pwd; ls -lsh; ls apps -lsh;ls apps/api/ -lsh"
   },
   "private": true,
   "dependencies": {
