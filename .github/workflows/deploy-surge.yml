@@ -3,7 +3,8 @@ name: BUILD SURGE METODISTA
 on:
   push:
     branches: [master]
-
+  commands:
+    - NODE_ENV=development
 env:
   API_METO_PORT: 3333
   DB_METO_HOSTNAME: oficinacincodbdev.czevptjeohvo.us-east-2.rds.amazonaws.com
@@ -43,8 +44,6 @@ jobs:
         working-directory: dist/apps/api
         run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_API }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
       - name: Levanta a API
-        commands:
-          - NODE_ENV=development
         working-directory: dist/apps/api
         run: npm run start
 
