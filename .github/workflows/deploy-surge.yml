@@ -42,6 +42,8 @@ jobs:
       - name: Copia API
         working-directory: dist/apps/api
         run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_API }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
+      - name: Levanta a API
+        working-directory: dist/apps/api
         run: npm run start:prod
 
       - name: Build APP
