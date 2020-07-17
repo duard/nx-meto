@@ -21,7 +21,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Install dependencies
+      - name: Cache NPM dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      - name: Install NPM dependencies
         run: npm install
 
       - name: Build API
@@ -35,7 +43,7 @@ jobs:
 
       - name: Copia API
         working-directory: dist/apps/api
-        run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_API }} --token ${{ secrets.SURGE_TOKEN_METODISTA_API }}
+        run: surge ./ ${{ secrets.SURGE_DOMAIN_METODISTA_API }} --token ${{ secrets.SURGE_TOKEN_METODISTA_APP }}
 
       - name: Copia APP
         working-directory: dist/apps/front
