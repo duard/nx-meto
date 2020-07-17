@@ -42,6 +42,8 @@ import { DatabaseConfig } from './database.config';
 })
 export class AppModule {
   constructor() {
+    console.log('\n\n\n\n','=> ', process.env.NODE_ENV);
+
     console.log('=> ', __dirname);
     Logger.debug('ENVIRONMENT =>', process.env.NODE_ENV);
     Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
