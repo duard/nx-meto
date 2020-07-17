@@ -41,7 +41,7 @@ async function bootstrap() {
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
-  const port = configService.get('API_METO_PORT');
+  const port = process.env.PORT;
 
   const options = new DocumentBuilder()
     .setTitle('Simples API Carlos')
