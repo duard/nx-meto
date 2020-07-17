@@ -3,7 +3,7 @@ import { Message } from '@meto/api-interfaces';
 
 @Injectable()
 export class AppService {
-  getData(): Message {
-    return { message: 'Welcome to api!' };
+  getData(): any {
+    return { message: 'Welcome to api!', hora: new Date() };
   }
 }
