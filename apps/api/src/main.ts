@@ -54,6 +54,8 @@ async function bootstrap() {
   SwaggerModule.setup('/docs', app, document);
 
   await app.listen(port, () => {
+    Logger.debug('AMBIENTE =>', process.env.NODE_ENV);
+
     Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
     Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
     Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
