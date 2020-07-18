@@ -27,8 +27,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "heroku-postbuild": "ls apps/api/* -lsha",
-    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-postbuild": "ng build --prod",
+    "heroku-prebuild": "npm install -g @nrwl/cli",
     "heroku-cleanup": "pwd; ls -lsh; ls apps -lsh;ls apps/api/ -lsh"
   },
   "private": true,
@@ -96,7 +96,9 @@
     "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.24",
     "winston": "^3.3.3",
-    "zone.js": "^0.10.2"
+    "zone.js": "^0.10.2",
+    "@angular/cli": "10.0.0",
+    "@angular/compiler-cli": "10.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1000.0",
