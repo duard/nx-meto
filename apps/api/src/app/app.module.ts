@@ -3,9 +3,7 @@ import { ApiDatabaseModule } from '@meto/api-database';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -14,12 +12,7 @@ import { DatabaseConfig } from './database.config';
 
 @Module({
   imports: [
-       // BEGIN INSERT
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'nx-app'),
-      exclude: ['/api*']
-    }),
-    // END INSERT
+
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],

@@ -51,23 +51,21 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/docs', app, document);
-
-  // await app.listen(PORT, () => {
-  //   Logger.debug('AMBIENTE =>', process.env.NODE_ENV);
-  //   Logger.debug('PORT =>', process.env.PORT);
-  //   Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
-  //   Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
-  //   Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
-  //   Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
-  //   Logger.debug(': DATABASE', process.env.DB_METO_DATABASE);
-  //   Logger.debug('Listening at http://localhost:' + process.env.PORT || 3000 + '/' + globalPrefix);
-  //   console.log(`Listening on ${PORT}`);
-  // });
-
   const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Our app is running on port ${PORT}`);
+
+  await app.listen(PORT, () => {
+    Logger.debug('AMBIENTE =>', process.env.NODE_ENV);
+    Logger.debug('PORT =>', process.env.PORT);
+    Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
+    Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
+    Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
+    Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
+    Logger.debug(': DATABASE', process.env.DB_METO_DATABASE);
+    Logger.debug('Listening at http://localhost:' + process.env.PORT || 3000 + '/' + globalPrefix);
+    console.log(`Listening on ${PORT}`);
   });
+
+
 }
 
 bootstrap();

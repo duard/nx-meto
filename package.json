@@ -27,7 +27,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "ng build api --prod",
     "heroku-prebuild": "npm install -g @nrwl/cli",
     "heroku-cleanup": "pwd; ls -lsh; ls apps -lsh;ls apps/api/ -lsh"
   },
