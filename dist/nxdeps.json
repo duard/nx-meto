@@ -2847,7 +2847,7 @@
             {
               "file": "apps/api/src/app/app.module.ts",
               "ext": ".ts",
-              "mtime": 1595010362205.7341
+              "mtime": 1595069905055.7341
             },
             {
               "file": "apps/api/src/app/app.service.spec.ts",
@@ -2877,7 +2877,7 @@
             {
               "file": "apps/api/src/main.ts",
               "ext": ".ts",
-              "mtime": 1595068656465.7341
+              "mtime": 1595069976925.7341
             },
             {
               "file": "apps/api/tsconfig.app.json",
@@ -3478,15 +3478,6 @@
           "files": []
         }
       },
-      "npm:@angular-devkit/build-angular": {
-        "type": "npm",
-        "name": "npm:@angular-devkit/build-angular",
-        "data": {
-          "version": "0.1000.0",
-          "packageName": "@angular-devkit/build-angular",
-          "files": []
-        }
-      },
       "npm:@angular/cli": {
         "type": "npm",
         "name": "npm:@angular/cli",
@@ -3502,6 +3493,15 @@
         "data": {
           "version": "10.0.1",
           "packageName": "@angular/compiler-cli",
+          "files": []
+        }
+      },
+      "npm:@angular-devkit/build-angular": {
+        "type": "npm",
+        "name": "npm:@angular-devkit/build-angular",
+        "data": {
+          "version": "0.1000.0",
+          "packageName": "@angular-devkit/build-angular",
           "files": []
         }
       },
@@ -4179,11 +4179,6 @@
         {
           "type": "static",
           "source": "api",
-          "target": "npm:@nestjs/serve-static"
-        },
-        {
-          "type": "static",
-          "source": "api",
           "target": "npm:@nestjs/typeorm"
         },
         {
@@ -4266,9 +4261,9 @@
       "npm:typeorm": [],
       "npm:winston": [],
       "npm:zone.js": [],
-      "npm:@angular-devkit/build-angular": [],
       "npm:@angular/cli": [],
       "npm:@angular/compiler-cli": [],
+      "npm:@angular-devkit/build-angular": [],
       "npm:@angular/language-service": [],
       "npm:@angularclass/hmr": [],
       "npm:@nestjs/cli": [],
@@ -6786,7 +6781,7 @@
       {
         "file": "apps/api/src/app/app.module.ts",
         "ext": ".ts",
-        "mtime": 1595010362205.7341
+        "mtime": 1595069905055.7341
       },
       {
         "file": "apps/api/src/app/app.service.spec.ts",
@@ -6816,7 +6811,7 @@
       {
         "file": "apps/api/src/main.ts",
         "ext": ".ts",
-        "mtime": 1595068656465.7341
+        "mtime": 1595069976925.7341
       },
       {
         "file": "apps/api/tsconfig.app.json",
