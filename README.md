@@ -5,7 +5,9 @@ Atualizar o projeto inteiro, sempre mantenha ele atualizado, não seja um goiaba
 https://awesomeopensource.com/project/juliandavidmr/awesome-nestjs
 
 ```shell
- npx ng update --all --force
+npm uninstall -g angular-cli
+npm install -g @angular/cli@latest
+npx ng update --all --force
 ```
 
 Gerar todas as Entities do seu banco de dados
