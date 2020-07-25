@@ -10,49 +10,23 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": [
-      "node_modules/@types",
-      "node"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types", "node"],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fuse/*": [
-        "apps/front/src/app/@fuse/*"
-      ],
-      "@envs/*": [
-        "environments/"
-      ],
-      "@env/*": [
-        "environments/*"
-      ],
-      "@entities/*": [
-        "libs/api-interfaces/src/*"
-      ],
-      "@meto/api-interfaces": [
-        "libs/api-interfaces/src/index.ts"
-      ],
-      "@meto/api-cruds": [
-        "libs/api-cruds/src/index.ts"
-      ],
-      "@meto/api-database": [
-        "libs/api-database/src/index.ts"
-      ],
-      "@meto/shared-things": [
-        "libs/shared-things/src/index.ts"
-      ],
-      "@meto/api-providers": [
-        "libs/api-providers/src/index.ts"
-      ]
+      "@fuse/*": ["apps/front/src/app/@fuse/*"],
+      "@envs/*": ["environments/"],
+      "@env/*": ["environments/*"],
+      "@entities/*": ["libs/api-interfaces/src/*"],
+      "@meto/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@meto/api-cruds": ["libs/api-cruds/src/index.ts"],
+      "@meto/api-database": ["libs/api-database/src/index.ts"],
+      "@meto/shared-things": ["libs/shared-things/src/index.ts"],
+      "@meto/api-providers": ["libs/api-providers/src/index.ts"],
+      "@meto/app-core": ["libs/app-core/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

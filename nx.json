@@ -43,6 +43,9 @@
     },
     "api-providers": {
       "tags": []
+    },
+    "app-core": {
+      "tags": []
     }
   },
   "affected": {

@@ -12,6 +12,8 @@ import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { AppCoreModule } from '@meto/app-core';
+
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { fuseConfig } from './fuse-config';
@@ -49,6 +51,9 @@ const appRoutes: Routes = [
     FuseSharedModule,
     FuseSidebarModule,
     FuseThemeOptionsModule,
+
+    // Lib Modules
+    AppCoreModule,
 
     // App modules
     AppStoreModule,
