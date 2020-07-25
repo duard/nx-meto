@@ -22,16 +22,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Cache NPM dependencies :-)
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache-
+      # - name: Cache NPM dependencies :-)
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.OS }}-npm-cache-
 
-      - name: Install NPM dependencies
-        run: npm install
+      # - name: Install NPM dependencies
+      #   run: npm install
 
       - name: Instala o SURGE
         run: npm install -g surge
@@ -46,8 +46,8 @@ jobs:
       #   working-directory: dist/apps/api
       #   run: npm run ng serve api
 
-      - name: Build APP
-        run: npm run build front
+      # - name: Build APP
+      #   run: npm run build front
 
       - name: Copia APP
         working-directory: dist/apps/front
