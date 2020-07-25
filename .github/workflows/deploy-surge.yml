@@ -4,13 +4,6 @@ on:
   push:
     branches: [master]
 
-env:
-  API_METO_PORT: 3333
-  DB_METO_HOSTNAME: oficinacincodbdev.czevptjeohvo.us-east-2.rds.amazonaws.com
-  DB_METO_USERNAME: metodista-dev
-  DB_METO_PASSWORD: NQDqnUtJSmk25sMD
-  DB_METO_DATABASE: metodista_dev
-
 jobs:
   build_deploy:
     runs-on: ubuntu-latest
