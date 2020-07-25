@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private _translateService: TranslateService,
     private _platform: Platform
   ) {
-    console.log('Versão busca menu', 'Build');
+    console.log('Versão busca menu', 'Build', 'outro teste');
     // Get default navigation
     this.navigation = navigation;
 
