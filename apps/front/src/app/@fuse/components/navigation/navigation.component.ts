@@ -58,18 +58,20 @@ export class FuseNavigationComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
-    // // Load the navigation either from the input or from the service
-    // this.navigation = this.navigation || this._fuseNavigationService.getCurrentNavigation();
-
-    // // Subscribe to the current navigation changes
-    // this._fuseNavigationService.onNavigationChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-    //   // Load the navigation
-    //   this.navigation = this._fuseNavigationService.getCurrentNavigation();
-
-    //   // Mark for check
-    //   this._changeDetectorRef.markForCheck();
-    // });
     this.onGetMenu();
+
+    // Load the navigation either from the input or from the service
+    this.navigation = this.navigation || this._fuseNavigationService.getCurrentNavigation();
+
+    // Subscribe to the current navigation changes
+    this._fuseNavigationService.onNavigationChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
+      // Load the navigation
+      this.navigation = this._fuseNavigationService.getCurrentNavigation();
+
+      // Mark for check
+      this._changeDetectorRef.markForCheck();
+    });
+
     // Subscribe to navigation item
     merge(
       this._fuseNavigationService.onNavigationItemAdded,
@@ -93,31 +95,20 @@ export class FuseNavigationComponent implements OnInit {
         const menu = JSON.parse(JSON.stringify(data));
         let children: any = [];
 
-        // GERA O MENU
-        for (let item of menu) {
-          // VERIFICA SE O ITEM É PAI
+        for (const item of menu) {
           if (!item.idpai) {
-            //DELETA A PROPRIEDADE URL
-
-            //VERIFICA SE O PAI POSSUI FILHOS
             children = menu.filter((c: any) => {
               return c.idpai === item.IDG032;
             });
-
-            // SE TIVER OS children SÃO INSERIDOS
             if (children.length > 0) {
               console.log(item.title, children.length, 'sub-menus');
               const subItems: any = [];
-
               children.forEach((element: any) => {
                 subItems.push(this.itemTransform(element));
               });
-
               item.children = subItems;
             }
-
             const menuItem = this.itemTransform(item);
-
             this.menuSistema.push(menuItem);
           }
         }
@@ -153,53 +144,5 @@ export class FuseNavigationComponent implements OnInit {
       url: item.url,
       children: item.children,
     };
-  }
-
-  onGetMenu2() {
-    this.menus$ = this._store.pipe(select(fromMenus.selectMenuList));
-    this._store.dispatch(MenuActions.LoadMenus());
-
-    this.menus$.pipe(takeUntil(this._unsubscribeAll)).subscribe((data: any) => {
-      if (data) {
-        console.log('DATAAAA', data);
-        const menu = JSON.parse(JSON.stringify(data));
-
-        let children: any = [];
-
-        // GERA O MENU
-        for (let item of menu) {
-          // console.log('==>', item);
-          if (item.type == 1) {
-            item.type = 'collapse';
-          } else {
-            item.type = 'item';
-          }
-
-          // VERIFICA SE O ITEM É PAI
-          if (!item.idpai) {
-            //DELETA A PROPRIEDADE URL
-            if (!item.url) {
-              delete item.url;
-            }
-
-            //VERIFICA SE O PAI POSSUI FILHOS
-            children = menu.filter(c => {
-              return c.idpai === item.IDG032;
-            });
-
-            // SE TIVER OS children SÃO INSERIDOS
-            if (children.length > 0) {
-              item.children = children;
-            }
-            item.id = item.IDG033;
-            this.menuSistema.push(item);
-          }
-        }
-        this.navigation = this._utilsService.formatData(this.menuSistema);
-        this.navigation = this.menuSistema;
-        console.log(this.menuSistema);
-        this._changeDetectorRef.markForCheck();
-      }
-    });
   }
 }
