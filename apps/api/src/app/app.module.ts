@@ -1,5 +1,5 @@
 import { CargosModule, EscolaridadesModule, LocaisModule } from '@meto/api-cruds';
-import { ApiDatabaseModule } from '@meto/api-database';
+import { ApiDatabaseModule, ApiDatabaseService } from '@meto/api-database';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -9,16 +9,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { config } from './config';
 import { DatabaseConfig } from './database.config';
+import { MenuModule } from './modules/menu/menu.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @Module({
   imports: [
-
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
     }),
     HelmetMiddleware,
     ApiDatabaseModule,
+    MenuModule,
+    ProfileModule,
     CargosModule,
     LocaisModule,
     EscolaridadesModule,
@@ -39,11 +42,12 @@ import { DatabaseConfig } from './database.config';
     // }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ApiDatabaseService],
 })
 export class AppModule {
   constructor() {
-    console.log('\n\n\n\n','=> ', process.env.NODE_ENV);
+    console.log('\n\n', '=> ', process.env.NODE_ENV);
+    console.log('\n\n', 'PORT =>', process.env.PORT);
 
     console.log('=> ', __dirname);
     Logger.debug('ENVIRONMENT =>', process.env.NODE_ENV);

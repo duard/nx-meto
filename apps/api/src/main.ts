@@ -51,7 +51,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/docs', app, document);
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3333;
 
   await app.listen(PORT, () => {
     Logger.debug('AMBIENTE =>', process.env.NODE_ENV);
@@ -64,8 +64,6 @@ async function bootstrap() {
     Logger.debug('Listening at http://localhost:' + process.env.PORT || 3000 + '/' + globalPrefix);
     console.log(`Listening on ${PORT}`);
   });
-
-
 }
 
 bootstrap();

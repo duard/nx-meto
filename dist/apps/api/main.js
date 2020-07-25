@@ -102,17 +102,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _meto_api_interfaces__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @meto/api-interfaces */ "./libs/api-interfaces/src/index.ts");
 /* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.service */ "./apps/api/src/app/app.service.ts");
-var _a, _b;
+/* harmony import */ var _meto_api_database__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @meto/api-database */ "./libs/api-database/src/index.ts");
+var _a, _b, _c, _d;
+
 
 
 
 
 let AppController = class AppController {
-    constructor(appService) {
+    constructor(appService, apiDB) {
         this.appService = appService;
+        this.apiDB = apiDB;
     }
     getData() {
         return this.appService.getData();
+    }
+    async rawSql(query) {
+        return this.apiDB.rawSQL(`SELECT * FROM G033 P, G032 M WHERE P.IDG032=M.IDG032 AND P.IDG031='1' AND M.DELETED='N' AND M.STS='A'   ORDER BY M.ORDEM  ASC`);
     }
 };
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -121,9 +127,16 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", []),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", typeof (_a = typeof _meto_api_interfaces__WEBPACK_IMPORTED_MODULE_2__["Message"] !== "undefined" && _meto_api_interfaces__WEBPACK_IMPORTED_MODULE_2__["Message"]) === "function" ? _a : Object)
 ], AppController.prototype, "getData", null);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Get"])('menu'),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Query"])()),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Function),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [Object]),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
+], AppController.prototype, "rawSql", null);
 AppController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Controller"])(),
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_b = typeof _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"] !== "undefined" && _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"]) === "function" ? _b : Object])
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_c = typeof _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"] !== "undefined" && _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"]) === "function" ? _c : Object, typeof (_d = typeof _meto_api_database__WEBPACK_IMPORTED_MODULE_4__["ApiDatabaseService"] !== "undefined" && _meto_api_database__WEBPACK_IMPORTED_MODULE_4__["ApiDatabaseService"]) === "function" ? _d : Object])
 ], AppController);
 
 
@@ -150,16 +163,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _nestjs_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @nestjs/config */ "@nestjs/config");
 /* harmony import */ var _nestjs_config__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_nestjs_config__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @nestjs/serve-static */ "@nestjs/serve-static");
-/* harmony import */ var _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_nestjs_serve_static__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
-/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _app_controller__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.controller */ "./apps/api/src/app/app.controller.ts");
-/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.service */ "./apps/api/src/app/app.service.ts");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./config */ "./apps/api/src/app/config.ts");
-/* harmony import */ var _database_config__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./database.config */ "./apps/api/src/app/database.config.ts");
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _app_controller__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.controller */ "./apps/api/src/app/app.controller.ts");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.service */ "./apps/api/src/app/app.service.ts");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./config */ "./apps/api/src/app/config.ts");
+/* harmony import */ var _database_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./database.config */ "./apps/api/src/app/database.config.ts");
+/* harmony import */ var _modules_menu_menu_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/menu/menu.module */ "./apps/api/src/app/modules/menu/menu.module.ts");
+/* harmony import */ var _modules_profile_profile_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/profile/profile.module */ "./apps/api/src/app/modules/profile/profile.module.ts");
 
 
 
@@ -175,7 +186,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
     constructor() {
-        console.log('\n\n\n\n', '=> ', "development");
+        console.log('\n\n', '=> ', "development");
+        console.log('\n\n', 'PORT =>', process.env.PORT);
         console.log('=> ', __dirname);
         _nestjs_common__WEBPACK_IMPORTED_MODULE_4__["Logger"].debug('ENVIRONMENT =>', "development");
         _nestjs_common__WEBPACK_IMPORTED_MODULE_4__["Logger"].debug('PORT =>', process.env.PORT);
@@ -189,18 +201,14 @@ let AppModule = class AppModule {
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_4__["Module"])({
         imports: [
-            // BEGIN INSERT
-            _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_6__["ServeStaticModule"].forRoot({
-                rootPath: Object(path__WEBPACK_IMPORTED_MODULE_8__["join"])(__dirname, '..', 'nx-app'),
-                exclude: ['/api*']
-            }),
-            // END INSERT
             _nestjs_config__WEBPACK_IMPORTED_MODULE_5__["ConfigModule"].forRoot({
                 isGlobal: true,
-                load: [_config__WEBPACK_IMPORTED_MODULE_11__["config"]],
+                load: [_config__WEBPACK_IMPORTED_MODULE_9__["config"]],
             }),
             _nest_middlewares_helmet__WEBPACK_IMPORTED_MODULE_3__["HelmetMiddleware"],
             _meto_api_database__WEBPACK_IMPORTED_MODULE_2__["ApiDatabaseModule"],
+            _modules_menu_menu_module__WEBPACK_IMPORTED_MODULE_11__["MenuModule"],
+            _modules_profile_profile_module__WEBPACK_IMPORTED_MODULE_12__["ProfileModule"],
             _meto_api_cruds__WEBPACK_IMPORTED_MODULE_1__["CargosModule"],
             _meto_api_cruds__WEBPACK_IMPORTED_MODULE_1__["LocaisModule"],
             _meto_api_cruds__WEBPACK_IMPORTED_MODULE_1__["EscolaridadesModule"],
@@ -209,13 +217,13 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             //   definitions: { path: join(process.cwd(), 'src/graphql.ts') },
             //   context: ({ req }) => ({ headers: req.headers }),
             // }),
-            _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_7__["TypeOrmModule"].forRootAsync({
+            _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_6__["TypeOrmModule"].forRootAsync({
                 imports: [_nestjs_config__WEBPACK_IMPORTED_MODULE_5__["ConfigModule"]],
-                useClass: _database_config__WEBPACK_IMPORTED_MODULE_12__["DatabaseConfig"],
+                useClass: _database_config__WEBPACK_IMPORTED_MODULE_10__["DatabaseConfig"],
             }),
         ],
-        controllers: [_app_controller__WEBPACK_IMPORTED_MODULE_9__["AppController"]],
-        providers: [_app_service__WEBPACK_IMPORTED_MODULE_10__["AppService"]],
+        controllers: [_app_controller__WEBPACK_IMPORTED_MODULE_7__["AppController"]],
+        providers: [_app_service__WEBPACK_IMPORTED_MODULE_8__["AppService"], _meto_api_database__WEBPACK_IMPORTED_MODULE_2__["ApiDatabaseService"]],
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [])
 ], AppModule);
@@ -321,6 +329,541 @@ DatabaseConfig = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./apps/api/src/app/modules/menu/menu.controller.ts":
+/*!**********************************************************!*\
+  !*** ./apps/api/src/app/modules/menu/menu.controller.ts ***!
+  \**********************************************************/
+/*! exports provided: MenuController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuController", function() { return MenuController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjsx/crud */ "@nestjsx/crud");
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _menu_entity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menu.entity */ "./apps/api/src/app/modules/menu/menu.entity.ts");
+/* harmony import */ var _menu_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./menu.service */ "./apps/api/src/app/modules/menu/menu.service.ts");
+/* harmony import */ var _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @meto/shared-things */ "./libs/shared-things/src/index.ts");
+var _a, _b, _c;
+
+
+
+// import { QueryDto } from '../../../shared/dto/query.dto';
+
+
+
+let MenuController = class MenuController {
+    constructor(service) {
+        this.service = service;
+    }
+    get base() {
+        return this;
+    }
+    getMany(req, query) {
+        if (query.orderType) {
+            const order = query.orderType.toUpperCase();
+            req.options.query.sort = [{ order, field: query.orderBy }];
+        }
+        return this.base.getManyBase(req);
+    }
+};
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["Override"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["ParsedRequest"])()), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(1, Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Query"])()),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Function),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_a = typeof _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudRequest"] !== "undefined" && _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudRequest"]) === "function" ? _a : Object, typeof (_b = typeof _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["QueryDto"] !== "undefined" && _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["QueryDto"]) === "function" ? _b : Object]),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", void 0)
+], MenuController.prototype, "getMany", null);
+MenuController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["Crud"])({
+        model: {
+            type: _menu_entity__WEBPACK_IMPORTED_MODULE_3__["Menu"],
+        },
+        query: {
+            alwaysPaginate: true,
+            // limit: 10,
+            sort: [{ field: 'id', order: 'DESC' }],
+            join: {
+                menus: {
+                    allow: [],
+                },
+                menu: {
+                    allow: [],
+                },
+                profiles: {
+                    allow: [],
+                },
+            },
+        },
+    }),
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Controller"])('menus'),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_c = typeof _menu_service__WEBPACK_IMPORTED_MODULE_4__["MenuService"] !== "undefined" && _menu_service__WEBPACK_IMPORTED_MODULE_4__["MenuService"]) === "function" ? _c : Object])
+], MenuController);
+
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/menu/menu.entity.ts":
+/*!******************************************************!*\
+  !*** ./apps/api/src/app/modules/menu/menu.entity.ts ***!
+  \******************************************************/
+/*! exports provided: Menu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Menu", function() { return Menu; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/swagger */ "@nestjs/swagger");
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjsx/crud */ "@nestjsx/crud");
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var class_validator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! class-validator */ "class-validator");
+/* harmony import */ var class_validator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(class_validator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! typeorm */ "typeorm");
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(typeorm__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @meto/shared-things */ "./libs/shared-things/src/index.ts");
+/* harmony import */ var _profile_profile_entity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile/profile.entity */ "./apps/api/src/app/modules/profile/profile.entity.ts");
+var Menu_1, _a, _b;
+
+
+
+
+
+
+
+const { CREATE, UPDATE } = _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudValidationGroups"];
+let Menu = Menu_1 = class Menu {
+};
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ always: true }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["PrimaryGeneratedColumn"])({ name: 'id_menu' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], Menu.prototype, "id", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["OneToMany"])(type => Menu_1, menu => menu.menu, { cascade: true, nullable: true, eager: true }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Array)
+], Menu.prototype, "menus", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["ManyToOne"])(type => Menu_1, menu => menu.menus),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["JoinColumn"])({ name: 'id_menupai' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Menu)
+], Menu.prototype, "menu", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'id_menupai', nullable: true }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], Menu.prototype, "parentId", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsInt"])({ message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].IS_INT }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsDefined"])({ groups: [CREATE], message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].NOT_EMPTY }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'nr_ordem', nullable: false, type: 'smallint' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], Menu.prototype, "index", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsDefined"])({ groups: [CREATE], message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].NOT_EMPTY }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsString"])({ message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].IS_STRING }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'nm_menu', type: 'varchar', nullable: false, length: 50 }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], Menu.prototype, "title", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsDefined"])({ groups: [CREATE], message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].NOT_EMPTY }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsString"])({ message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].IS_STRING }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'ur_menu', type: 'varchar', nullable: false, length: 250 }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], Menu.prototype, "url", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsString"])({ message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["MESSAGES"].IS_STRING }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'nm_icone', type: 'varchar', length: 30, nullable: true }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], Menu.prototype, "icon", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [CREATE, UPDATE] }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["ManyToMany"])(() => _profile_profile_entity__WEBPACK_IMPORTED_MODULE_6__["Profile"]),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["JoinTable"])({
+        name: 'perfil_menu',
+        joinColumn: { name: 'id_menu', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'id_perfil', referencedColumnName: 'id' },
+    }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Array)
+], Menu.prototype, "profiles", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'sn_ativo', type: 'smallint', default: 1 }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], Menu.prototype, "status", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'dt_cadast', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], Menu.prototype, "createdAt", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'dt_altera', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+], Menu.prototype, "updatedAt", void 0);
+Menu = Menu_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Entity"])('menus')
+], Menu);
+
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/menu/menu.module.ts":
+/*!******************************************************!*\
+  !*** ./apps/api/src/app/modules/menu/menu.module.ts ***!
+  \******************************************************/
+/*! exports provided: MenuModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuModule", function() { return MenuModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _menu_controller__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menu.controller */ "./apps/api/src/app/modules/menu/menu.controller.ts");
+/* harmony import */ var _menu_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./menu.service */ "./apps/api/src/app/modules/menu/menu.service.ts");
+/* harmony import */ var _menu_entity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu.entity */ "./apps/api/src/app/modules/menu/menu.entity.ts");
+
+
+
+
+
+
+let MenuModule = class MenuModule {
+};
+MenuModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Module"])({
+        imports: [
+            _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__["TypeOrmModule"].forFeature([
+                _menu_entity__WEBPACK_IMPORTED_MODULE_5__["Menu"],
+            ]),
+        ],
+        controllers: [_menu_controller__WEBPACK_IMPORTED_MODULE_3__["MenuController"]],
+        providers: [_menu_service__WEBPACK_IMPORTED_MODULE_4__["MenuService"]],
+    })
+], MenuModule);
+
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/menu/menu.service.ts":
+/*!*******************************************************!*\
+  !*** ./apps/api/src/app/modules/menu/menu.service.ts ***!
+  \*******************************************************/
+/*! exports provided: MenuService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuService", function() { return MenuService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @nestjsx/crud-typeorm */ "@nestjsx/crud-typeorm");
+/* harmony import */ var _nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! typeorm */ "typeorm");
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(typeorm__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _menu_entity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu.entity */ "./apps/api/src/app/modules/menu/menu.entity.ts");
+var _a;
+
+
+
+
+
+
+let MenuService = class MenuService extends _nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3__["TypeOrmCrudService"] {
+    constructor(menuRepository) {
+        super(menuRepository);
+        this.menuRepository = menuRepository;
+    }
+};
+MenuService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__["InjectRepository"])(_menu_entity__WEBPACK_IMPORTED_MODULE_5__["Menu"])),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_a = typeof typeorm__WEBPACK_IMPORTED_MODULE_4__["Repository"] !== "undefined" && typeorm__WEBPACK_IMPORTED_MODULE_4__["Repository"]) === "function" ? _a : Object])
+], MenuService);
+
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/profile/profile.controller.ts":
+/*!****************************************************************!*\
+  !*** ./apps/api/src/app/modules/profile/profile.controller.ts ***!
+  \****************************************************************/
+/*! exports provided: ProfileController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileController", function() { return ProfileController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjsx/crud */ "@nestjsx/crud");
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _profile_entity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile.entity */ "./apps/api/src/app/modules/profile/profile.entity.ts");
+/* harmony import */ var _profile_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile.service */ "./apps/api/src/app/modules/profile/profile.service.ts");
+/* harmony import */ var _meto_shared_things__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @meto/shared-things */ "./libs/shared-things/src/index.ts");
+var _a, _b, _c, _d;
+
+
+
+
+
+
+let ProfileController = class ProfileController {
+    constructor(service) {
+        this.service = service;
+    }
+    get base() {
+        return this;
+    }
+    getMany(req, query) {
+        const { search, searchBy, orderBy, orderType } = query;
+        if (orderType) {
+            const order = orderType.toUpperCase();
+            req.options.query.sort = [{ order, field: orderBy }];
+        }
+        if (search) {
+            const column = searchBy ? searchBy : 'name';
+            req.parsed.search.$and = Object(_meto_shared_things__WEBPACK_IMPORTED_MODULE_5__["parseSearch"])(search, column);
+        }
+        return this.base.getManyBase(req);
+    }
+    createOneBase(req, body) {
+        console.log('body', body);
+        return this.base.createOneBase(req, body);
+    }
+};
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["Override"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["ParsedRequest"])()),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(1, Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Query"])()),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Function),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_a = typeof _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudRequest"] !== "undefined" && _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudRequest"]) === "function" ? _a : Object, Object]),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", void 0)
+], ProfileController.prototype, "getMany", null);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["Override"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["ParsedRequest"])()), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(1, Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["ParsedBody"])()),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Function),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_b = typeof _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudRequest"] !== "undefined" && _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudRequest"]) === "function" ? _b : Object, typeof (_c = typeof _profile_entity__WEBPACK_IMPORTED_MODULE_3__["Profile"] !== "undefined" && _profile_entity__WEBPACK_IMPORTED_MODULE_3__["Profile"]) === "function" ? _c : Object]),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:returntype", void 0)
+], ProfileController.prototype, "createOneBase", null);
+ProfileController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["Crud"])({
+        model: {
+            type: _profile_entity__WEBPACK_IMPORTED_MODULE_3__["Profile"],
+        },
+        query: {
+            alwaysPaginate: true,
+            limit: 10,
+            sort: [{ field: 'id', order: 'DESC' }],
+            join: {
+                menus: {
+                    allow: [],
+                },
+            },
+        },
+    }),
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Controller"])('profiles'),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_d = typeof _profile_service__WEBPACK_IMPORTED_MODULE_4__["ProfileService"] !== "undefined" && _profile_service__WEBPACK_IMPORTED_MODULE_4__["ProfileService"]) === "function" ? _d : Object])
+], ProfileController);
+
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/profile/profile.entity.ts":
+/*!************************************************************!*\
+  !*** ./apps/api/src/app/modules/profile/profile.entity.ts ***!
+  \************************************************************/
+/*! exports provided: Profile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Profile", function() { return Profile; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/swagger */ "@nestjs/swagger");
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjsx/crud */ "@nestjsx/crud");
+/* harmony import */ var _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var class_validator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! class-validator */ "class-validator");
+/* harmony import */ var class_validator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(class_validator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! typeorm */ "typeorm");
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(typeorm__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _menu_menu_entity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../menu/menu.entity */ "./apps/api/src/app/modules/menu/menu.entity.ts");
+/* harmony import */ var _meto_shared_things__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @meto/shared-things */ "./libs/shared-things/src/index.ts");
+var _a, _b;
+
+
+
+
+
+
+
+const { CREATE, UPDATE } = _nestjsx_crud__WEBPACK_IMPORTED_MODULE_2__["CrudValidationGroups"];
+let Profile = class Profile {
+};
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ always: true }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["PrimaryGeneratedColumn"])({ name: 'id_profile' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], Profile.prototype, "id", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [UPDATE] }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsDefined"])({ groups: [CREATE], message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_6__["MESSAGES"].NOT_EMPTY }),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsString"])({ message: _meto_shared_things__WEBPACK_IMPORTED_MODULE_6__["MESSAGES"].IS_STRING }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'nm_perfil', length: 30, type: 'varchar', nullable: false }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], Profile.prototype, "name", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_3__["IsOptional"])({ groups: [CREATE, UPDATE] }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["ManyToMany"])(type => _menu_menu_entity__WEBPACK_IMPORTED_MODULE_5__["Menu"], menu => menu.profiles, { cascade: true }),
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["JoinTable"])({
+        name: 'perfil_menu',
+        inverseJoinColumn: { name: 'id_menu', referencedColumnName: 'id' },
+        joinColumn: { name: 'id_perfil', referencedColumnName: 'id' },
+    }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Array)
+], Profile.prototype, "menus", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'dt_cadast', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], Profile.prototype, "createdAt", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Column"])({ name: 'dt_altera', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+], Profile.prototype, "updatedAt", void 0);
+Profile = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(typeorm__WEBPACK_IMPORTED_MODULE_4__["Entity"])('perfis')
+], Profile);
+
+// @ManyToOne({ entity: () => Author })
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/profile/profile.module.ts":
+/*!************************************************************!*\
+  !*** ./apps/api/src/app/modules/profile/profile.module.ts ***!
+  \************************************************************/
+/*! exports provided: ProfileModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileModule", function() { return ProfileModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _profile_controller__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile.controller */ "./apps/api/src/app/modules/profile/profile.controller.ts");
+/* harmony import */ var _profile_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile.service */ "./apps/api/src/app/modules/profile/profile.service.ts");
+/* harmony import */ var _profile_entity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile.entity */ "./apps/api/src/app/modules/profile/profile.entity.ts");
+
+
+
+
+
+
+let ProfileModule = class ProfileModule {
+};
+ProfileModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Module"])({
+        imports: [
+            _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__["TypeOrmModule"].forFeature([
+                _profile_entity__WEBPACK_IMPORTED_MODULE_5__["Profile"],
+            ]),
+        ],
+        controllers: [_profile_controller__WEBPACK_IMPORTED_MODULE_3__["ProfileController"]],
+        providers: [_profile_service__WEBPACK_IMPORTED_MODULE_4__["ProfileService"]],
+    })
+], ProfileModule);
+
+
+
+/***/ }),
+
+/***/ "./apps/api/src/app/modules/profile/profile.service.ts":
+/*!*************************************************************!*\
+  !*** ./apps/api/src/app/modules/profile/profile.service.ts ***!
+  \*************************************************************/
+/*! exports provided: ProfileService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileService", function() { return ProfileService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjs/typeorm */ "@nestjs/typeorm");
+/* harmony import */ var _nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @nestjsx/crud-typeorm */ "@nestjsx/crud-typeorm");
+/* harmony import */ var _nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! typeorm */ "typeorm");
+/* harmony import */ var typeorm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(typeorm__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _profile_entity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile.entity */ "./apps/api/src/app/modules/profile/profile.entity.ts");
+var _a;
+
+
+
+
+
+
+let ProfileService = class ProfileService extends _nestjsx_crud_typeorm__WEBPACK_IMPORTED_MODULE_3__["TypeOrmCrudService"] {
+    constructor(profileRepository) {
+        super(profileRepository);
+        this.profileRepository = profileRepository;
+    }
+};
+ProfileService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_nestjs_typeorm__WEBPACK_IMPORTED_MODULE_2__["InjectRepository"])(_profile_entity__WEBPACK_IMPORTED_MODULE_5__["Profile"])),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [typeof (_a = typeof typeorm__WEBPACK_IMPORTED_MODULE_4__["Repository"] !== "undefined" && typeorm__WEBPACK_IMPORTED_MODULE_4__["Repository"]) === "function" ? _a : Object])
+], ProfileService);
+
+
+
+/***/ }),
+
 /***/ "./apps/api/src/main.ts":
 /*!******************************!*\
   !*** ./apps/api/src/main.ts ***!
@@ -330,8 +873,8 @@ DatabaseConfig = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+/* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _nestjs_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/config */ "@nestjs/config");
 /* harmony import */ var _nestjs_config__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_config__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _nestjs_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nestjs/core */ "@nestjs/core");
@@ -346,56 +889,51 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function bootstrap() {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-        // const app = await NestFactory.create(AppModule, {
-        //   logger: new BunyanLoggerService({
-        //     projectName: 'SIMPLES',
-        //     formatterOptions: {
-        //       outputMode: 'short',
-        //       color: true,
-        //       levelInString: true,
-        //       // colorFromLevel: any
-        //     },
-        //     customStreams: [
-        //       {
-        //         path: './api-log.log',
-        //       },
-        //     ],
-        //   }),
-        // });
-        const app = yield _nestjs_core__WEBPACK_IMPORTED_MODULE_2__["NestFactory"].create(_app_app_module__WEBPACK_IMPORTED_MODULE_5__["AppModule"]);
-        app.useGlobalPipes(new _meto_shared_things__WEBPACK_IMPORTED_MODULE_4__["ValidationPipe"]());
-        // const app = await NestFactory.create(AppModule, { logger: true });
-        // app.useLogger(app.get(Logger));
-        app.enableCors();
-        const configService = app.get(_nestjs_config__WEBPACK_IMPORTED_MODULE_1__["ConfigService"]);
-        const globalPrefix = 'api';
-        app.setGlobalPrefix(globalPrefix);
-        const options = new _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["DocumentBuilder"]()
-            .setTitle('Simples API Carlos')
-            .setDescription('API NestJS para Base')
-            .setVersion('1.0')
-            // .setBasePath('api')
-            .addBearerAuth()
-            .build();
-        const document = _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["SwaggerModule"].createDocument(app, options);
-        _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["SwaggerModule"].setup('/docs', app, document);
-        // await app.listen(PORT, () => {
-        //   Logger.debug('AMBIENTE =>', process.env.NODE_ENV);
-        //   Logger.debug('PORT =>', process.env.PORT);
-        //   Logger.debug('API_METO_PORT =>', process.env.API_METO_PORT);
-        //   Logger.debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
-        //   Logger.debug('USERNAME =>', process.env.DB_METO_USERNAME);
-        //   Logger.debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
-        //   Logger.debug(': DATABASE', process.env.DB_METO_DATABASE);
-        //   Logger.debug('Listening at http://localhost:' + process.env.PORT || 3000 + '/' + globalPrefix);
-        //   console.log(`Listening on ${PORT}`);
-        // });
-        const PORT = process.env.PORT || 3000;
-        app.listen(PORT, () => {
-            console.log(`Our app is running on port ${PORT}`);
-        });
+async function bootstrap() {
+    // const app = await NestFactory.create(AppModule, {
+    //   logger: new BunyanLoggerService({
+    //     projectName: 'SIMPLES',
+    //     formatterOptions: {
+    //       outputMode: 'short',
+    //       color: true,
+    //       levelInString: true,
+    //       // colorFromLevel: any
+    //     },
+    //     customStreams: [
+    //       {
+    //         path: './api-log.log',
+    //       },
+    //     ],
+    //   }),
+    // });
+    const app = await _nestjs_core__WEBPACK_IMPORTED_MODULE_2__["NestFactory"].create(_app_app_module__WEBPACK_IMPORTED_MODULE_5__["AppModule"]);
+    app.useGlobalPipes(new _meto_shared_things__WEBPACK_IMPORTED_MODULE_4__["ValidationPipe"]());
+    // const app = await NestFactory.create(AppModule, { logger: true });
+    // app.useLogger(app.get(Logger));
+    app.enableCors();
+    const configService = app.get(_nestjs_config__WEBPACK_IMPORTED_MODULE_1__["ConfigService"]);
+    const globalPrefix = 'api';
+    app.setGlobalPrefix(globalPrefix);
+    const options = new _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["DocumentBuilder"]()
+        .setTitle('Simples API Carlos')
+        .setDescription('API NestJS para Base')
+        .setVersion('1.0')
+        // .setBasePath('api')
+        .addBearerAuth()
+        .build();
+    const document = _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["SwaggerModule"].createDocument(app, options);
+    _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["SwaggerModule"].setup('/docs', app, document);
+    const PORT = process.env.PORT || 3333;
+    await app.listen(PORT, () => {
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('AMBIENTE =>', "development");
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('PORT =>', process.env.PORT);
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('API_METO_PORT =>', process.env.API_METO_PORT);
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('HOSTNAME =>', process.env.DB_METO_HOSTNAME);
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('USERNAME =>', process.env.DB_METO_USERNAME);
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('PASSWORD =>', process.env.DB_METO_PASSWORD);
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug(': DATABASE', process.env.DB_METO_DATABASE);
+        _nestjs_common__WEBPACK_IMPORTED_MODULE_0__["Logger"].debug('Listening at http://localhost:' + process.env.PORT || false);
+        console.log(`Listening on ${PORT}`);
     });
 }
 bootstrap();
@@ -840,13 +1378,17 @@ LocaisService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*!****************************************!*\
   !*** ./libs/api-database/src/index.ts ***!
   \****************************************/
-/*! exports provided: ApiDatabaseModule */
+/*! exports provided: ApiDatabaseModule, ApiDatabaseService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_api_database_api_database_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/api-database/api-database.module */ "./libs/api-database/src/lib/api-database/api-database.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApiDatabaseModule", function() { return _lib_api_database_api_database_module__WEBPACK_IMPORTED_MODULE_0__["ApiDatabaseModule"]; });
+
+/* harmony import */ var _lib_api_database_api_database_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/api-database/api-database.service */ "./libs/api-database/src/lib/api-database/api-database.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApiDatabaseService", function() { return _lib_api_database_api_database_service__WEBPACK_IMPORTED_MODULE_1__["ApiDatabaseService"]; });
+
 
 
 
@@ -876,15 +1418,11 @@ let ApiDatabaseController = class ApiDatabaseController {
     constructor(apiDatabaseService) {
         this.apiDatabaseService = apiDatabaseService;
     }
-    rawSql(query) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.apiDatabaseService.rawSQL(query.querySQL);
-        });
+    async rawSql(query) {
+        return this.apiDatabaseService.rawSQL(query.querySQL);
     }
-    tableFields(query) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.apiDatabaseService.tableFields(query.tableName);
-        });
+    async tableFields(query) {
+        return this.apiDatabaseService.tableFields(query.tableName);
     }
 };
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -970,11 +1508,9 @@ let ApiDatabaseService = class ApiDatabaseService {
     constructor(entityManager) {
         this.entityManager = entityManager;
     }
-    rawSQL(sqlQuery) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const rawData = yield this.entityManager.query(sqlQuery);
-            return rawData;
-        });
+    async rawSQL(sqlQuery) {
+        const rawData = await this.entityManager.query(sqlQuery);
+        return rawData;
     }
     tableFields(tableName) {
         const rawData = this.entityManager.query(`SHOW COLUMNS FROM ${tableName}`);
@@ -1398,7 +1934,7 @@ LocalEntity = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*!*****************************************!*\
   !*** ./libs/shared-things/src/index.ts ***!
   \*****************************************/
-/*! exports provided: ConfigService, SnakeNamingStrategy, SharedThingsModule, ValidationPipe */
+/*! exports provided: ConfigService, Password, SnakeNamingStrategy, periods, compareTime, compareDateIsAfter, compareDateIsSameOrAfeter, isBetween, getTimeInterval, convertHoursToNumber, dayWeekByDate, monthByDate, dayWeekByIndex, indexByDayWeek, getRange, getNumberRange, getCurrentDateWithoutHours, formatDateWithoutHours, formatDateHours, formatDateWithHours, generateCodeWithCurrentDate, generateCodePlp, getDateNowWithouHours, calculatesTheDifferenceBetweenDates, addDays, formatByType, Email, imageFileFilter, editFileName, onlyNumbers, prepareToken, verifyToken, decoteToken, generateRandonPassword, comparePasswordHash, parseSearch, SharedThingsModule, ValidationPipe, QueryDto, MESSAGES, ERROR_MESSAGES, MESSAGES_V2, SankhyaEndpoint */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1406,19 +1942,351 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_services_config_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/services/config.service */ "./libs/shared-things/src/lib/services/config.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ConfigService", function() { return _lib_services_config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"]; });
 
-/* harmony import */ var _lib_utils_snake_naming_strategy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/utils/snake-naming.strategy */ "./libs/shared-things/src/lib/utils/snake-naming.strategy.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SnakeNamingStrategy", function() { return _lib_utils_snake_naming_strategy__WEBPACK_IMPORTED_MODULE_1__["SnakeNamingStrategy"]; });
+/* harmony import */ var _lib_classes_password__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/classes/password */ "./libs/shared-things/src/lib/classes/password.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Password", function() { return _lib_classes_password__WEBPACK_IMPORTED_MODULE_1__["Password"]; });
 
-/* harmony import */ var _lib_shared_things_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lib/shared-things.module */ "./libs/shared-things/src/lib/shared-things.module.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SharedThingsModule", function() { return _lib_shared_things_module__WEBPACK_IMPORTED_MODULE_2__["SharedThingsModule"]; });
+/* harmony import */ var _lib_utils_snake_naming_strategy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lib/utils/snake-naming.strategy */ "./libs/shared-things/src/lib/utils/snake-naming.strategy.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SnakeNamingStrategy", function() { return _lib_utils_snake_naming_strategy__WEBPACK_IMPORTED_MODULE_2__["SnakeNamingStrategy"]; });
 
-/* harmony import */ var _lib_pipes_validation_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/pipes/validation.pipe */ "./libs/shared-things/src/lib/pipes/validation.pipe.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ValidationPipe", function() { return _lib_pipes_validation_pipe__WEBPACK_IMPORTED_MODULE_3__["ValidationPipe"]; });
+/* harmony import */ var _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/utils/date.utils */ "./libs/shared-things/src/lib/utils/date.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "periods", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["periods"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "compareTime", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["compareTime"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "compareDateIsAfter", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["compareDateIsAfter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "compareDateIsSameOrAfeter", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["compareDateIsSameOrAfeter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isBetween", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["isBetween"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTimeInterval", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["getTimeInterval"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "convertHoursToNumber", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["convertHoursToNumber"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "dayWeekByDate", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["dayWeekByDate"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "monthByDate", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["monthByDate"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "dayWeekByIndex", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["dayWeekByIndex"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "indexByDayWeek", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["indexByDayWeek"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getRange", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["getRange"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getNumberRange", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["getNumberRange"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getCurrentDateWithoutHours", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["getCurrentDateWithoutHours"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "formatDateWithoutHours", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["formatDateWithoutHours"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "formatDateHours", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["formatDateHours"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "formatDateWithHours", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["formatDateWithHours"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateCodeWithCurrentDate", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["generateCodeWithCurrentDate"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateCodePlp", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["generateCodePlp"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDateNowWithouHours", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["getDateNowWithouHours"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "calculatesTheDifferenceBetweenDates", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["calculatesTheDifferenceBetweenDates"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "addDays", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["addDays"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "formatByType", function() { return _lib_utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["formatByType"]; });
+
+/* harmony import */ var _lib_utils_email_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lib/utils/email.utils */ "./libs/shared-things/src/lib/utils/email.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Email", function() { return _lib_utils_email_utils__WEBPACK_IMPORTED_MODULE_4__["Email"]; });
+
+/* harmony import */ var _lib_utils_file_upload_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lib/utils/file-upload.utils */ "./libs/shared-things/src/lib/utils/file-upload.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "imageFileFilter", function() { return _lib_utils_file_upload_utils__WEBPACK_IMPORTED_MODULE_5__["imageFileFilter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "editFileName", function() { return _lib_utils_file_upload_utils__WEBPACK_IMPORTED_MODULE_5__["editFileName"]; });
+
+/* harmony import */ var _lib_utils_format_data_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lib/utils/format-data.utils */ "./libs/shared-things/src/lib/utils/format-data.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "onlyNumbers", function() { return _lib_utils_format_data_utils__WEBPACK_IMPORTED_MODULE_6__["onlyNumbers"]; });
+
+/* harmony import */ var _lib_utils_jwt_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lib/utils/jwt.utils */ "./libs/shared-things/src/lib/utils/jwt.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "prepareToken", function() { return _lib_utils_jwt_utils__WEBPACK_IMPORTED_MODULE_7__["prepareToken"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "verifyToken", function() { return _lib_utils_jwt_utils__WEBPACK_IMPORTED_MODULE_7__["verifyToken"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "decoteToken", function() { return _lib_utils_jwt_utils__WEBPACK_IMPORTED_MODULE_7__["decoteToken"]; });
+
+/* harmony import */ var _lib_utils_password_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lib/utils/password.utils */ "./libs/shared-things/src/lib/utils/password.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateRandonPassword", function() { return _lib_utils_password_utils__WEBPACK_IMPORTED_MODULE_8__["generateRandonPassword"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "comparePasswordHash", function() { return _lib_utils_password_utils__WEBPACK_IMPORTED_MODULE_8__["comparePasswordHash"]; });
+
+/* harmony import */ var _lib_utils_search_transform_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./lib/utils/search-transform.utils */ "./libs/shared-things/src/lib/utils/search-transform.utils.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "parseSearch", function() { return _lib_utils_search_transform_utils__WEBPACK_IMPORTED_MODULE_9__["parseSearch"]; });
+
+/* harmony import */ var _lib_shared_things_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./lib/shared-things.module */ "./libs/shared-things/src/lib/shared-things.module.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SharedThingsModule", function() { return _lib_shared_things_module__WEBPACK_IMPORTED_MODULE_10__["SharedThingsModule"]; });
+
+/* harmony import */ var _lib_pipes_validation_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lib/pipes/validation.pipe */ "./libs/shared-things/src/lib/pipes/validation.pipe.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ValidationPipe", function() { return _lib_pipes_validation_pipe__WEBPACK_IMPORTED_MODULE_11__["ValidationPipe"]; });
+
+/* harmony import */ var _lib_dto_query_dto__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./lib/dto/query.dto */ "./libs/shared-things/src/lib/dto/query.dto.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "QueryDto", function() { return _lib_dto_query_dto__WEBPACK_IMPORTED_MODULE_12__["QueryDto"]; });
+
+/* harmony import */ var _lib_enums_messages_enum__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./lib/enums/messages.enum */ "./libs/shared-things/src/lib/enums/messages.enum.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MESSAGES", function() { return _lib_enums_messages_enum__WEBPACK_IMPORTED_MODULE_13__["MESSAGES"]; });
+
+/* harmony import */ var _lib_enums_error_messages_enum__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./lib/enums/error.messages.enum */ "./libs/shared-things/src/lib/enums/error.messages.enum.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERROR_MESSAGES", function() { return _lib_enums_error_messages_enum__WEBPACK_IMPORTED_MODULE_14__["ERROR_MESSAGES"]; });
+
+/* harmony import */ var _lib_enums_messagesv2_enum__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./lib/enums/messagesv2.enum */ "./libs/shared-things/src/lib/enums/messagesv2.enum.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MESSAGES_V2", function() { return _lib_enums_messagesv2_enum__WEBPACK_IMPORTED_MODULE_15__["MESSAGES_V2"]; });
+
+/* harmony import */ var _lib_enums_sankhya_endpoints_enum__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./lib/enums/sankhya-endpoints.enum */ "./libs/shared-things/src/lib/enums/sankhya-endpoints.enum.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SankhyaEndpoint", function() { return _lib_enums_sankhya_endpoints_enum__WEBPACK_IMPORTED_MODULE_16__["SankhyaEndpoint"]; });
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/classes/password.ts":
+/*!********************************************************!*\
+  !*** ./libs/shared-things/src/lib/classes/password.ts ***!
+  \********************************************************/
+/*! exports provided: Password */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Password", function() { return Password; });
+class Password {
+}
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/dto/query.dto.ts":
+/*!*****************************************************!*\
+  !*** ./libs/shared-things/src/lib/dto/query.dto.ts ***!
+  \*****************************************************/
+/*! exports provided: QueryDto */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryDto", function() { return QueryDto; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nestjs/swagger */ "@nestjs/swagger");
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var class_validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! class-validator */ "class-validator");
+/* harmony import */ var class_validator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(class_validator__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+class QueryDto {
+}
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], QueryDto.prototype, "limit", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Number)
+], QueryDto.prototype, "offset", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)
+], QueryDto.prototype, "searchBy", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], QueryDto.prototype, "search", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], QueryDto.prototype, "orderBy", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], QueryDto.prototype, "orderType", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_1__["ApiProperty"])(),
+    Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["IsOptional"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)
+], QueryDto.prototype, "status", void 0);
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/enums/error.messages.enum.ts":
+/*!*****************************************************************!*\
+  !*** ./libs/shared-things/src/lib/enums/error.messages.enum.ts ***!
+  \*****************************************************************/
+/*! exports provided: ERROR_MESSAGES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERROR_MESSAGES", function() { return ERROR_MESSAGES; });
+var ERROR_MESSAGES;
+(function (ERROR_MESSAGES) {
+    ERROR_MESSAGES["BAD_REQUEST"] = "Dados mal formatados.";
+    ERROR_MESSAGES["INTERNAL_SERVER_ERROR"] = "Erro interno no servidor.";
+    ERROR_MESSAGES["NOT_FOUND"] = "Dados n\u00E3o encontrados.";
+    ERROR_MESSAGES["SERVICE_UNAVAILABLE"] = "Servi\u00E7o indispon\u00EDvel.";
+    ERROR_MESSAGES["NOT_ACCEPTABLE"] = "N\u00E3o aceit\u00E1vel";
+    ERROR_MESSAGES["TOKEN_FORBIDDEN"] = "Acesso negado! Token inv\u00E1lido ou n\u00E3o informado";
+    ERROR_MESSAGES["ROLE_FORBIDDEN"] = "Acesso negado! Sem permiss\u00E3o";
+    ERROR_MESSAGES["FIREBASE_TOKEN_NOT_FOUND"] = "Token n\u00E3o encontrado";
+    ERROR_MESSAGES["ICX_INTERNAL_SERVER_ERROR"] = "Erro ao tentar conectar com o ICX";
+    ERROR_MESSAGES["ICX_REF_NOT_FOUND"] = "Id de refer\u00EAncia do ICX n\u00E3o foi encontrado";
+    ERROR_MESSAGES["ORDER_NOT_FOUND"] = "Pedido n\u00E3o encontrado.";
+})(ERROR_MESSAGES || (ERROR_MESSAGES = {}));
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/enums/messages.enum.ts":
+/*!***********************************************************!*\
+  !*** ./libs/shared-things/src/lib/enums/messages.enum.ts ***!
+  \***********************************************************/
+/*! exports provided: MESSAGES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MESSAGES", function() { return MESSAGES; });
+var MESSAGES;
+(function (MESSAGES) {
+    MESSAGES["DELETED"] = "Registro deletado com sucesso";
+    MESSAGES["NOT_FOUND"] = "Registro inexistente!";
+    MESSAGES["ZIP_CODE_NOT_FOUND"] = "Cep n\u00E3o encontrado";
+    MESSAGES["MAX_LENGTH"] = "Limite m\u00E1ximo de caracteres excedido";
+    MESSAGES["NOT_EMPTY"] = "Campo obrigat\u00F3rio";
+    MESSAGES["IS_INT"] = "O campo deve ser do tipo inteiro";
+    MESSAGES["IS_STRING"] = "O campo deve ser do tipo string";
+    MESSAGES["IS_ARRAY"] = "O campo deve ser do tipo array";
+    MESSAGES["IS_ARRAY_OBJECT"] = "O campo deve ser do tipo array de objetos";
+    MESSAGES["IS_OBJECT"] = "O campo deve ser do tipo objeto.";
+    MESSAGES["IS_DATETIME"] = "O campo deve ser do tipo datetime YYYY-MM-DDTHH:mm:ssZ";
+    MESSAGES["IS_DATE"] = "O campo deve ser do tipo date YYYY-MM-DD";
+    MESSAGES["IS_TIME"] = "O campo deve ser do tipo date HH:mm";
+    MESSAGES["PERIOD"] = "Os valores permitidos s\u00E3o: morning, evening, nocturnal";
+    MESSAGES["ALREADY_BEEN_ACCEPTED"] = "A ordem de trabalho j\u00E1 foi aceita";
+    MESSAGES["COLLECTION_ORDER_ALREADY_BEEN_ACCEPTED"] = "A ordem de coleta j\u00E1 foi aceita";
+    MESSAGES["ALREADY_BEEN_ACCEPTED_WORK_ORDER"] = "Este hor\u00E1rio j\u00E1 est\u00E1 agendado em outra ordem de trabalho.";
+    MESSAGES["REJECTED_SCHEDULE"] = "Instala\u00E7\u00E3o rejeitada com sucesso.";
+    MESSAGES["CANCELED_SCHEDULE"] = "Instala\u00E7\u00E3o cancelada com sucesso.";
+    MESSAGES["SEND_CONFIRMATION_EMAIL"] = "Um e-mail de confirma\u00E7\u00E3o foi enviado para seu e-mail de cadastro";
+    MESSAGES["STATUS_SCHEDULE"] = "O status foi atualizado com sucesso";
+    MESSAGES["UPDATE_TERM_USE_STATUS"] = "O status foi atualizado com sucesso";
+    MESSAGES["NOT_ACCEPTED_TERM_USE"] = "O termo de uso n\u00E3o foi aceito";
+    MESSAGES["PENDING_TECHNICIAN"] = "O instalador n\u00E3o est\u00E1 apto para receber ofertas!";
+    MESSAGES["INVALID_INSTALLATION_ZIP_CODE"] = "C\u00F3digo do instalador inv\u00E1lido!";
+    MESSAGES["MESSAGE_BLOCK"] = "Dados inv\u00E1lidos, seu login foi bloqueado, um link de redefini\u00E7\u00E3o de senha foi enviado para seu e-mail de cadastro!";
+    MESSAGES["CUSTOMER_NOT_FOUND"] = "Assinante n\u00E3o encontrado!";
+    MESSAGES["TECHNICIAN_NOT_FOUND"] = "T\u00E9cnico n\u00E3o encontrado!";
+    MESSAGES["MSG006"] = "Usu\u00E1rio j\u00E1 cadastrado.";
+})(MESSAGES || (MESSAGES = {}));
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/enums/messagesv2.enum.ts":
+/*!*************************************************************!*\
+  !*** ./libs/shared-things/src/lib/enums/messagesv2.enum.ts ***!
+  \*************************************************************/
+/*! exports provided: MESSAGES_V2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MESSAGES_V2", function() { return MESSAGES_V2; });
+var MESSAGES_V2;
+(function (MESSAGES_V2) {
+    MESSAGES_V2["MSG001"] = "Opera\u00E7\u00E3o realizada com sucesso.";
+    MESSAGES_V2["MSG002"] = "Dados obrigat\u00F3rios n\u00E3o informados.";
+    MESSAGES_V2["MSG003"] = "Deseja realmente efetuar a opera\u00E7\u00E3o de <nome da opera\u00E7\u00E3o>? (Sim/N\u00E3o).";
+    MESSAGES_V2["MSG004"] = "Nenhum registro encontrado.";
+    MESSAGES_V2["MSG005"] = "Informe ao menos um crit\u00E9rio de pesquisa para prosseguir com a opera\u00E7\u00E3o.";
+    MESSAGES_V2["MSG006"] = "Usu\u00E1rio j\u00E1 cadastrado.";
+    MESSAGES_V2["MSG007"] = "C\u00F3digo do estabelecimento j\u00E1 cadastrado.";
+    MESSAGES_V2["MSG008"] = "Percentual de desconto em fatura maior que 100%.";
+    MESSAGES_V2["MSG009"] = "O valor deve ser superior a 0.";
+    MESSAGES_V2["MSG010"] = "Data inv\u00E1lida.";
+    MESSAGES_V2["MSG011"] = "A data inicial n\u00E3o deve ser maior que a data final.";
+    MESSAGES_V2["MSG012"] = "A data final n\u00E3o deve ser maior que a data atual.";
+    MESSAGES_V2["MSG013"] = "A data inicial n\u00E3o deve ser menor que a data atual.";
+    MESSAGES_V2["MSG014"] = "<> inv\u00E1lido.";
+    MESSAGES_V2["MSG015"] = "C\u00F3digo inv\u00E1lido.";
+    MESSAGES_V2["MSG016"] = "Inclus\u00E3o/Altera\u00E7\u00E3o de <> n\u00E3o permitida!";
+    MESSAGES_V2["MSG017"] = "Exclus\u00E3o n\u00E3o permitida!";
+    MESSAGES_V2["MSG018"] = "Cancelamento n\u00E3o permitido!";
+    MESSAGES_V2["MSG019"] = "Arquivo indispon\u00EDvel no <>.";
+    MESSAGES_V2["MSG020"] = "Opera\u00E7\u00E3o de <> n\u00E3o permitida!";
+    MESSAGES_V2["MSG021"] = "Sincroniza\u00E7\u00E3o efetuada com sucesso";
+    MESSAGES_V2["MSG022"] = "Falta na sincroniza\u00E7\u00E3o, ser\u00E1 sincronizada novamente ap\u00F3s alguns minutos.";
+    MESSAGES_V2["MSG023"] = "Serial <> j\u00E1 foi informado na ordem de servi\u00E7o <> com equipamento <>. Favor verificar!";
+    MESSAGES_V2["MSG024"] = "A ordem de servi\u00E7o <> est\u00E1 com equipamento <> sem identifica\u00E7\u00E3o do n\u00FAmero de serial. Favor verificar!";
+    MESSAGES_V2["MSG025"] = "Altera\u00E7\u00E3o da <> n\u00E3o permitida! Ordem de Coleta j\u00E1 aceita pelo transportador <>";
+    MESSAGES_V2["MSG026"] = "Deseja realmente sair da aplica\u00E7\u00E3o? (Sim/N\u00E3o).";
+    MESSAGES_V2["MSG027"] = "Existem informa\u00E7\u00F5es que n\u00E3o foram salvas, deseja realmente sair sem salvar? (Sim/N\u00E3o).";
+    MESSAGES_V2["MSG028"] = "Ordem de Coleta <> n\u00E3o est\u00E1 mais dispon\u00EDvel.";
+    MESSAGES_V2["MSG029"] = "Voc\u00EA digitou a senha inv\u00E1lida! Voc\u00EA tem mais <> tentativas de Login restantes.";
+    MESSAGES_V2["MSG030"] = "Foi enviado um e-mail para <> com um link para o redefinir a senha.";
+    MESSAGES_V2["MSG031"] = "Formatado ou tamanho inv\u00E1lido! Somente ser\u00E3o aceitos arquivos <> com o tamanho m\u00E1ximo de <>";
+    MESSAGES_V2["MSG032"] = "Pedido de Venda <> n\u00E3o encontrado.";
+    MESSAGES_V2["MSG033"] = "CEP do pedido de venda <> diferente do CEP informado <>.";
+    MESSAGES_V2["MSG034"] = "Foi associado ao seu cadastro o usu\u00E1rio <> com CPF <>. Em caso de discord\u00E2ncia entrar em contato com o suporte t\u00E9cnico.";
+    MESSAGES_V2["MSG035"] = "Existem data/hor\u00E1rio conflitantes com o cadastrado. Verifique!";
+    MESSAGES_V2["MSG036"] = "A data/hora final deve ser maior que a data/hora inicial.";
+    MESSAGES_V2["MSG037"] = "N\u00E3o \u00E9 poss\u00EDvel bloquear o per\u00EDodo informado pois j\u00E1 existem agendamento.";
+    MESSAGES_V2["MSG038"] = "N\u00E3o foi poss\u00EDvel enviar os arquivos. Tente novamente.";
+    MESSAGES_V2["MSG039"] = "O aplicativo BluTec est\u00E1 liberado para uso. Veja o tutorial de como utilizar o Aplicativo BluTec.";
+    MESSAGES_V2["MSG040"] = "Ordem de Servi\u00E7o <> n\u00E3o est\u00E1 mais dispon\u00EDvel.";
+    MESSAGES_V2["MSG041"] = "CEP n\u00E3o encontrado.";
+})(MESSAGES_V2 || (MESSAGES_V2 = {}));
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/enums/sankhya-endpoints.enum.ts":
+/*!********************************************************************!*\
+  !*** ./libs/shared-things/src/lib/enums/sankhya-endpoints.enum.ts ***!
+  \********************************************************************/
+/*! exports provided: SankhyaEndpoint */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SankhyaEndpoint", function() { return SankhyaEndpoint; });
+var SankhyaEndpoint;
+(function (SankhyaEndpoint) {
+    SankhyaEndpoint["AUTHENTICATION"] = "/mge/service.sbr?serviceName=MobileLoginSP.login&outputType=json";
+    SankhyaEndpoint["CONSULT_IN_SANKHYA"] = "/mge/service.sbr?serviceName=DbExplorerSP.executeQuery&";
+    SankhyaEndpoint["FINISH_SESSION"] = "/mge/service.sbr?serviceName=MobileLoginSP.logout&outputType=json";
+})(SankhyaEndpoint || (SankhyaEndpoint = {}));
 
 
 /***/ }),
@@ -1449,22 +2317,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ValidationPipe = class ValidationPipe {
-    transform(value, metadata) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            if (!value) {
-                throw new _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["BadRequestException"]('No data submitted');
-            }
-            const { metatype } = metadata;
-            if (!metatype || !this.toValidate(metatype)) {
-                return value;
-            }
-            const object = Object(class_transformer__WEBPACK_IMPORTED_MODULE_3__["plainToClass"])(metatype, value);
-            const errors = yield Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["validate"])(object);
-            if (errors.length > 0) {
-                throw new _nestjs_common_exceptions_http_exception__WEBPACK_IMPORTED_MODULE_4__["HttpException"]({ message: 'Input data validation failed', errors: this.buildError(errors) }, _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["HttpStatus"].BAD_REQUEST);
-            }
+    async transform(value, metadata) {
+        if (!value) {
+            throw new _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["BadRequestException"]('No data submitted');
+        }
+        const { metatype } = metadata;
+        if (!metatype || !this.toValidate(metatype)) {
             return value;
-        });
+        }
+        const object = Object(class_transformer__WEBPACK_IMPORTED_MODULE_3__["plainToClass"])(metatype, value);
+        const errors = await Object(class_validator__WEBPACK_IMPORTED_MODULE_2__["validate"])(object);
+        if (errors.length > 0) {
+            throw new _nestjs_common_exceptions_http_exception__WEBPACK_IMPORTED_MODULE_4__["HttpException"]({ message: 'Input data validation failed', errors: this.buildError(errors) }, _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["HttpStatus"].BAD_REQUEST);
+        }
+        return value;
     }
     buildError(errors) {
         const result = {};
@@ -1591,6 +2457,334 @@ SharedThingsModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./libs/shared-things/src/lib/utils/date.utils.ts":
+/*!********************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/date.utils.ts ***!
+  \********************************************************/
+/*! exports provided: periods, compareTime, compareDateIsAfter, compareDateIsSameOrAfeter, isBetween, getTimeInterval, convertHoursToNumber, dayWeekByDate, monthByDate, dayWeekByIndex, indexByDayWeek, getRange, getNumberRange, getCurrentDateWithoutHours, formatDateWithoutHours, formatDateHours, formatDateWithHours, generateCodeWithCurrentDate, generateCodePlp, getDateNowWithouHours, calculatesTheDifferenceBetweenDates, addDays, formatByType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "periods", function() { return periods; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTime", function() { return compareTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareDateIsAfter", function() { return compareDateIsAfter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareDateIsSameOrAfeter", function() { return compareDateIsSameOrAfeter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isBetween", function() { return isBetween; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTimeInterval", function() { return getTimeInterval; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertHoursToNumber", function() { return convertHoursToNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dayWeekByDate", function() { return dayWeekByDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "monthByDate", function() { return monthByDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dayWeekByIndex", function() { return dayWeekByIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexByDayWeek", function() { return indexByDayWeek; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRange", function() { return getRange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNumberRange", function() { return getNumberRange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentDateWithoutHours", function() { return getCurrentDateWithoutHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateWithoutHours", function() { return formatDateWithoutHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateHours", function() { return formatDateHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatDateWithHours", function() { return formatDateWithHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateCodeWithCurrentDate", function() { return generateCodeWithCurrentDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateCodePlp", function() { return generateCodePlp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDateNowWithouHours", function() { return getDateNowWithouHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculatesTheDifferenceBetweenDates", function() { return calculatesTheDifferenceBetweenDates; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addDays", function() { return addDays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatByType", function() { return formatByType; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+
+const week = [
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado',
+];
+const periods = {
+    morning: ['06:00', '11:59'],
+    evening: ['12:00', '17:59'],
+    nocturnal: ['18:00', '23:59'],
+};
+function compareTime(leftTime, rightTime) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](rightTime).isAfter(leftTime);
+}
+function compareDateIsAfter(leftTime, rightTime) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](leftTime).isAfter(rightTime);
+}
+function compareDateIsSameOrAfeter(leftTime, rightTime) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](leftTime).isSameOrAfter(rightTime);
+}
+function isBetween(now, startDate, finalDate) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__(now).isBetween(startDate, finalDate, 'day', '[]');
+}
+function getTimeInterval(startTime, endTime) {
+    const start = moment__WEBPACK_IMPORTED_MODULE_0__(startTime, 'HH:mm');
+    const end = moment__WEBPACK_IMPORTED_MODULE_0__(endTime, 'HH:mm');
+    const minutes = end.diff(start, 'minutes');
+    const interval = moment__WEBPACK_IMPORTED_MODULE_0__().hour(0).minute(minutes);
+    return interval.format('HH:mm');
+}
+function convertHoursToNumber(time) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__["duration"](time).asHours();
+}
+function dayWeekByDate(date) {
+    const dayWeekIndex = moment__WEBPACK_IMPORTED_MODULE_0__["utc"](date).day();
+    return week[dayWeekIndex];
+}
+function monthByDate(date) {
+    const monthIndex = moment__WEBPACK_IMPORTED_MODULE_0__["utc"](date).locale('pt-BR').format('MMM');
+    return monthIndex;
+}
+function dayWeekByIndex(index) {
+    return week[index];
+}
+function indexByDayWeek(dayWeek) {
+    const w = [
+        'Segunda-feira',
+        'Terça-feira',
+        'Quarta-feira',
+        'Quinta-feira',
+        'Sexta-feira',
+        'Sábado',
+        'Domingo',
+    ];
+    return w.findIndex(item => item === dayWeek) - 1;
+}
+function getRange(startDate, endDate, type) {
+    const fromDate = moment__WEBPACK_IMPORTED_MODULE_0__["utc"](startDate);
+    const toDate = moment__WEBPACK_IMPORTED_MODULE_0__["utc"](endDate);
+    const diff = toDate.diff(fromDate, type);
+    const range = [];
+    for (let i = 0; i < diff; i++) {
+        range.push(moment__WEBPACK_IMPORTED_MODULE_0__["utc"](startDate).add(i, type));
+    }
+    return range;
+}
+function getNumberRange(start, end) {
+    return [...Array(end - start + 1)].map((_, i) => start + i);
+}
+function getCurrentDateWithoutHours() {
+    return moment__WEBPACK_IMPORTED_MODULE_0__().format('YYYY-MM-DD');
+}
+function formatDateWithoutHours(date) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__(date).format('YYYY-MM-DD');
+}
+function formatDateHours(date) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__(date).format('HH:MM:ss');
+}
+function formatDateWithHours(date) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](date).format('YYYY-MM-DD HH:MM:ss');
+}
+function generateCodeWithCurrentDate() {
+    return moment__WEBPACK_IMPORTED_MODULE_0__().format('YYYYMMDDHHMMssSSS');
+}
+function generateCodePlp() {
+    return moment__WEBPACK_IMPORTED_MODULE_0__().format('YYYYMMDD');
+}
+function getDateNowWithouHours() {
+    return moment__WEBPACK_IMPORTED_MODULE_0__["utc"]().format('YYYY-MM-DD');
+}
+function calculatesTheDifferenceBetweenDates(initial, final) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__(final).diff(moment__WEBPACK_IMPORTED_MODULE_0__(initial), 'days');
+}
+function addDays(date, days) {
+    return moment__WEBPACK_IMPORTED_MODULE_0__(date).add(days, 'day').format('YYYY-MM-DD');
+}
+function formatByType(date, type) {
+    switch (type) {
+        case 'Y':
+            return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](date).format('YYYY');
+            break;
+        case 'M':
+            return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](date).format('MM');
+            break;
+        case 'D':
+            return moment__WEBPACK_IMPORTED_MODULE_0__["utc"](date).format('DD');
+            break;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/utils/email.utils.ts":
+/*!*********************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/email.utils.ts ***!
+  \*********************************************************/
+/*! exports provided: Email */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Email", function() { return Email; });
+/* harmony import */ var nodemailer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nodemailer */ "nodemailer");
+/* harmony import */ var nodemailer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nodemailer__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var nodemailer_sendgrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nodemailer-sendgrid */ "nodemailer-sendgrid");
+/* harmony import */ var nodemailer_sendgrid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nodemailer_sendgrid__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var pug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pug */ "pug");
+/* harmony import */ var pug__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(pug__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+class Email {
+    constructor() { }
+    send(to, title, html) {
+        console.log('process.env.EMAIL_HOST', process.env.EMAIL_HOST);
+        this.email = nodemailer__WEBPACK_IMPORTED_MODULE_0__["createTransport"](nodemailer_sendgrid__WEBPACK_IMPORTED_MODULE_1__({ apiKey: process.env.EMAIL_PASS }));
+        const blutvEnv = `blutv.${"development"}`;
+        return this.email.sendMail({
+            from: `BluTV - <credenciamento@blutv.com.br`,
+            to,
+            subject: title,
+            text: title,
+            html,
+        });
+    }
+    sendEmailPug(to, title, pathFile, params) {
+        console.log('process.env.EMAIL_HOST', process.env.EMAIL_HOST);
+        this.email = nodemailer__WEBPACK_IMPORTED_MODULE_0__["createTransport"](nodemailer_sendgrid__WEBPACK_IMPORTED_MODULE_1__({ apiKey: process.env.EMAIL_PASS }));
+        const blutvEnv = `blutv.${"development"}`;
+        return this.email.sendMail({
+            from: `BluTV - credenciamento@minhablutv.com.br`,
+            to,
+            subject: title,
+            text: title,
+            html: pug__WEBPACK_IMPORTED_MODULE_2__["renderFile"](pathFile, params),
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/utils/file-upload.utils.ts":
+/*!***************************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/file-upload.utils.ts ***!
+  \***************************************************************/
+/*! exports provided: imageFileFilter, editFileName */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imageFileFilter", function() { return imageFileFilter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editFileName", function() { return editFileName; });
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);
+
+const imageFileFilter = (req, file, callback) => {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+        return callback(new Error('Only image files are allowed!'), false);
+    }
+    callback(null, true);
+};
+const editFileName = (req, file, callback) => {
+    console.log('aqqq', req.body);
+    const fileExtName = Object(path__WEBPACK_IMPORTED_MODULE_0__["extname"])(file.originalname);
+    callback(null, `${Date.now()}${fileExtName}`);
+};
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/utils/format-data.utils.ts":
+/*!***************************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/format-data.utils.ts ***!
+  \***************************************************************/
+/*! exports provided: onlyNumbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onlyNumbers", function() { return onlyNumbers; });
+function onlyNumbers(value) {
+    return value.replace(/\D+/g, '');
+}
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/utils/jwt.utils.ts":
+/*!*******************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/jwt.utils.ts ***!
+  \*******************************************************/
+/*! exports provided: prepareToken, verifyToken, decoteToken */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prepareToken", function() { return prepareToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "verifyToken", function() { return verifyToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decoteToken", function() { return decoteToken; });
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__);
+
+function prepareToken(payload, expiresIn = '3d') {
+    const secret = process.env.TOKEN_SECRET;
+    return jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__["sign"](payload, secret, { expiresIn });
+}
+function verifyToken(token) {
+    return jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__["verify"](token, process.env.TOKEN_SECRET);
+}
+function decoteToken(token) {
+    return jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__["decode"](token);
+}
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/utils/password.utils.ts":
+/*!************************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/password.utils.ts ***!
+  \************************************************************/
+/*! exports provided: generateRandonPassword, comparePasswordHash */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateRandonPassword", function() { return generateRandonPassword; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "comparePasswordHash", function() { return comparePasswordHash; });
+/* harmony import */ var bcryptjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bcryptjs */ "bcryptjs");
+/* harmony import */ var bcryptjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bcryptjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var crypto_random_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! crypto-random-string */ "crypto-random-string");
+/* harmony import */ var crypto_random_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(crypto_random_string__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const generateRandonPassword = (password) => {
+    let plainText = crypto_random_string__WEBPACK_IMPORTED_MODULE_1__({ length: 5, type: 'hex' });
+    if (password) {
+        plainText = password;
+    }
+    const hash = bcryptjs__WEBPACK_IMPORTED_MODULE_0__["hashSync"](plainText, 5);
+    return { plainText, hash };
+};
+const comparePasswordHash = async (password, hash) => {
+    return await bcryptjs__WEBPACK_IMPORTED_MODULE_0__["compare"](password, hash);
+};
+
+
+/***/ }),
+
+/***/ "./libs/shared-things/src/lib/utils/search-transform.utils.ts":
+/*!********************************************************************!*\
+  !*** ./libs/shared-things/src/lib/utils/search-transform.utils.ts ***!
+  \********************************************************************/
+/*! exports provided: parseSearch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseSearch", function() { return parseSearch; });
+function parseSearch(search, searchBy) {
+    const searchFields = Array.isArray(searchBy)
+        ? searchBy.map(f => ({ [f]: { $contL: search } }))
+        : [{ [searchBy]: { $contL: search } }];
+    return searchFields;
+}
+
+
+/***/ }),
+
 /***/ "./libs/shared-things/src/lib/utils/snake-naming.strategy.ts":
 /*!*******************************************************************!*\
   !*** ./libs/shared-things/src/lib/utils/snake-naming.strategy.ts ***!
@@ -1701,17 +2895,6 @@ module.exports = require("@nestjs/core");
 
 /***/ }),
 
-/***/ "@nestjs/serve-static":
-/*!***************************************!*\
-  !*** external "@nestjs/serve-static" ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@nestjs/serve-static");
-
-/***/ }),
-
 /***/ "@nestjs/swagger":
 /*!**********************************!*\
   !*** external "@nestjs/swagger" ***!
@@ -1756,6 +2939,17 @@ module.exports = require("@nestjsx/crud-typeorm");
 
 /***/ }),
 
+/***/ "bcryptjs":
+/*!***************************!*\
+  !*** external "bcryptjs" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("bcryptjs");
+
+/***/ }),
+
 /***/ "class-transformer":
 /*!************************************!*\
   !*** external "class-transformer" ***!
@@ -1778,6 +2972,17 @@ module.exports = require("class-validator");
 
 /***/ }),
 
+/***/ "crypto-random-string":
+/*!***************************************!*\
+  !*** external "crypto-random-string" ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("crypto-random-string");
+
+/***/ }),
+
 /***/ "dotenv":
 /*!*************************!*\
   !*** external "dotenv" ***!
@@ -1789,6 +2994,50 @@ module.exports = require("dotenv");
 
 /***/ }),
 
+/***/ "jsonwebtoken":
+/*!*******************************!*\
+  !*** external "jsonwebtoken" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("jsonwebtoken");
+
+/***/ }),
+
+/***/ "moment":
+/*!*************************!*\
+  !*** external "moment" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
+
+/***/ }),
+
+/***/ "nodemailer":
+/*!*****************************!*\
+  !*** external "nodemailer" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("nodemailer");
+
+/***/ }),
+
+/***/ "nodemailer-sendgrid":
+/*!**************************************!*\
+  !*** external "nodemailer-sendgrid" ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("nodemailer-sendgrid");
+
+/***/ }),
+
 /***/ "path":
 /*!***********************!*\
   !*** external "path" ***!
@@ -1797,6 +3046,17 @@ module.exports = require("dotenv");
 /***/ (function(module, exports) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ "pug":
+/*!**********************!*\
+  !*** external "pug" ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("pug");
 
 /***/ }),
 

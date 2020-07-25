@@ -1,0 +1,47 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType, Effect } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import * as MenuActions from '../actions/menu.actions';
+
+import { defer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { MenuService } from '../services/menu.service';
+
+@Injectable()
+export class MenuEffects {
+  // constructor(private http: HttpClient, private actions$: Actions, private thisService: MenuService) {}
+  constructor() {}
+
+  // @Effect()
+
+  // LoadMenus$: Observable<Action> = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(MenuActions.LoadMenus),
+  //     mergeMap(action =>
+  //       this.http.get('this.ApiURL').pipe(
+  //         map((data: any[]) => {
+  //           return MenuActions.LoadMenusSucces({ payload: data });
+  //         }),
+  //         catchError((error: Error) => {
+  //           return of(MenuActions.ErrorAction(error));
+  //         })
+  //       )
+  //     )
+  //   )
+  // );
+
+  // loadCollection$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(MenuActions.LoadMenus),
+  //     switchMap(() =>
+  //       this.thisService.getAll().pipe(
+  //         map((menus: any[]) => MenuActions.LoadMenusSucces({ menus })),
+  //         catchError(error => of(MenuActions.ErrorAction({ error })))
+  //       )
+  //     )
+  //   )
+  // );
+}

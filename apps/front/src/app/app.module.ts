@@ -1,23 +1,23 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
-
-import { fuseConfig } from './fuse-config';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { fuseConfig } from './fuse-config';
 import { LayoutModule } from './layout/layout.module';
 import { SampleModule } from './main/sample/sample.module';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AppStoreModule } from './store/store.module';
 
 const appRoutes: Routes = [
   {
@@ -51,8 +51,10 @@ const appRoutes: Routes = [
     FuseThemeOptionsModule,
 
     // App modules
+    AppStoreModule,
     LayoutModule,
     SampleModule,
+    CoreModule,
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
