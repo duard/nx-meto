@@ -73,6 +73,7 @@
     "angular-calendar": "0.28.16",
     "angular-in-memory-web-api": "0.11.0",
     "apollo-server-express": "^2.16.0",
+    "array-to-tree": "^3.3.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "2.9.3",
     "class-transformer": "^0.2.3",

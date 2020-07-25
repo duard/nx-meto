@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
@@ -14,11 +14,6 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { navigation } from './navigation/navigation';
 import { locale as navigationEnglish } from './navigation/i18n/en';
 import { locale as navigationTurkish } from './navigation/i18n/tr';
-import { Store, select } from '@ngrx/store';
-import * as fromMenus from './store/reducers/menu.reducers';
-import { LoadMenus } from './store';
-import * as MenuActions from './store/actions/menu.actions';
-import { FuseNavigationItem } from '@fuse/types/fuse-navigation';
 
 @Component({
   selector: 'app',
@@ -28,8 +23,7 @@ import { FuseNavigationItem } from '@fuse/types/fuse-navigation';
 export class AppComponent implements OnInit, OnDestroy {
   fuseConfig: any;
   navigation: any;
-  menuSistema: any[];
-  books$: Observable<any>;
+
   // Private
   private _unsubscribeAll: Subject<any>;
 
@@ -53,49 +47,11 @@ export class AppComponent implements OnInit, OnDestroy {
     private _fuseSplashScreenService: FuseSplashScreenService,
     private _fuseTranslationLoaderService: FuseTranslationLoaderService,
     private _translateService: TranslateService,
-    private _platform: Platform,
-    private _store: Store<fromMenus.MenuState>
+    private _platform: Platform
   ) {
     console.log('INICIO da applicação');
-    this.books$ = this._store.pipe(select(fromMenus.selectMenuList));
-
-    this.books$.subscribe(data => {
-      if (data) {
-        console.log('original', navigation);
-
-        console.log('DATAAAA', data);
-
-        data.forEach(element => {
-          const item = {
-            id: data.IDG033,
-            title: 'string',
-            type: '',
-            translate: 'string',
-            icon: 'string',
-            hidden: 'boolean',
-            url: 'string',
-            classes: 'string',
-            exactMatch: 'boolean',
-            externalUrl: 'boolean',
-            openInNewTab: 'boolean',
-            function: 'any',
-            badge: {
-              title: 'string',
-              translate: 'string',
-              bg: 'string',
-              fg: 'string',
-            },
-            children: element,
-          };
-          this.menuSistema.push(item);
-        });
-      }
-    });
-
-    this._store.dispatch(MenuActions.LoadMenus());
-
     // Get default navigation
-    this.navigation = this.menuSistema;
+    this.navigation = navigation;
 
     // Register the navigation to the service
     this._fuseNavigationService.register('main', this.navigation);
