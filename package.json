@@ -75,7 +75,7 @@
     "apollo-server-express": "^2.16.0",
     "array-to-tree": "^3.3.2",
     "bcryptjs": "^2.4.3",
-    "chart.js": "2.9.3",
+    "chart.js": "2.9.4",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "classlist.js": "1.1.20150312",
